@@ -10,19 +10,17 @@ import Image from "next/image";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
-  const router = useRouter(); // Use Next.js router for navigation
-
+  const router = useRouter();
+  
   const handleSubmit = async (formData: FormData) => {
     setLoading(true);
-
     try {
       const res = await loginSignup(formData, true);
-
       if (res?.error) {
         toast({ title: res.error, variant: "destructive" });
       } else {
         toast({ title: "Login successful", variant: "default" });
-        router.push("/landing"); // Navigate to /main programmatically
+        router.push("/landing");
       }
     } catch (error) {
       console.error("Login error:", error);
@@ -36,10 +34,10 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <div className="flex flex-row rounded-lg bg-white shadow-lg">
+    <div className="flex min-h-screen items-center justify-center bg-gray-100 px-4">
+      <div className="flex w-full max-w-3xl flex-col md:flex-row rounded-lg bg-white shadow-lg overflow-hidden">
         {/* Image Section */}
-        <div className="hidden items-center justify-center rounded-l-lg bg-gray-50 p-5 md:flex relative w-80">
+        <div className="hidden md:flex items-center justify-center bg-gray-50 p-5 w-1/2 relative">
           <Image
             src="https://account.asus.com/img/login_img02.png"
             alt="Login illustration"
@@ -48,15 +46,15 @@ const Login = () => {
           />
         </div>
         {/* Form Section */}
-        <div className="flex w-[450px] flex-col items-center justify-center gap-5 px-5 py-10">
-          <h1 className="text-center text-4xl font-bold">Login</h1>
+        <div className="flex w-full md:w-1/2 flex-col items-center justify-center gap-5 px-5 py-10">
+          <h1 className="text-center text-3xl md:text-4xl font-bold">Login</h1>
           <form
             onSubmit={(e) => {
-              e.preventDefault(); // Prevent default form submission
+              e.preventDefault();
               const formData = new FormData(e.currentTarget);
               handleSubmit(formData);
             }}
-            className="w-full"
+            className="w-full space-y-4"
           >
             <FormInput
               name="email"
@@ -75,9 +73,7 @@ const Login = () => {
             <div className="mt-5">
               <Button
                 type="submit"
-                className={`${
-                  loading ? "disable cursor-not-allowed" : ""
-                } w-full bg-blue-500`}
+                className={`w-full bg-blue-500 ${loading ? "disable cursor-not-allowed" : ""}`}
               >
                 {loading ? "Loading..." : "Login"}
               </Button>
@@ -88,4 +84,5 @@ const Login = () => {
     </div>
   );
 };
+
 export default Login;
