@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  email    String @unique
+  password String
+}
+
+model Staff {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  profile   Json
+  dropdown  Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model project {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  project   Json
+  dropdown  Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model team {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  team      Json
+  dropdown  Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model organization {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  organization Json
+  dropdown     Json
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model milestone {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  milestone Json
+  dropdown  Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

@@ -1,0 +1,140 @@
+"use client"; // Enables React's client-side rendering.
+
+import React, { useEffect, useState } from "react";
+import { Button } from "@/components/ui/shadcn/button";
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "@/components/ui/shadcn/avatar";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+
+interface Project {
+  id: string;
+  name: string;
+  owner: string;
+  manager: string;
+  client: string;
+  category: string;
+  projectproposalstatus: string;
+  projectStage: string;
+  worknumber: string;
+  startDate: string;
+  endDate: string;
+  description: string;
+  title: string;
+  address: string;
+}
+
+const ProjectCard: React.FC<{ isNewStaffAdded: boolean }> = ({
+  isNewStaffAdded,
+}) => {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
+
+  const fetchProjects = async () => {
+    try {
+      const response = await axios.get<{ projects: Project[] }>(
+        "/api/projectcardapi"
+      );
+      setProjects(response.data.projects);
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  useEffect(() => {
+    fetchProjects();
+  }, [isNewStaffAdded]);
+
+  // Filter projects based on name OR client
+  const filteredProjects = projects.filter(
+    (project) =>
+      project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.client.toLowerCase().includes(searchQuery.toLowerCase()) // Added client filter
+  );
+
+  if (!projects || projects.length === 0) {
+    return (
+      <div className="text-center text-gray-500">No projects available.</div>
+    );
+  }
+
+  return (
+    <div className="px-6 pb-6">
+      {/* Search bar */}
+      <div className="mb-6 flex justify-start">
+        <input
+          type="text"
+          className="w-full max-w-md rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Search projects by name or client..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
+
+      {/* Project list */}
+      <div className="container mx-auto grid gap-12 pt-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {filteredProjects.length > 0 ? (
+          filteredProjects.map((project) => (
+            <div
+              key={project.id}
+              className="flex flex-col items-center justify-between rounded-lg border border-dashed border-gray-300 bg-white p-6 shadow-xl transition-transform hover:scale-105 hover:shadow-2xl dark:border-gray-700"
+            >
+              <Avatar className="mb-4 h-16 w-16">
+                <AvatarImage
+                  src="https://allnvysbhq.cloudimg.io/v7/www.projectsmart.co.uk/img/project.png"
+                  alt={`Avatar for ${project.name}`}
+                />
+                <AvatarFallback>
+                  {project.name?.charAt(0)}
+                  {project.name?.charAt(1)}
+                </AvatarFallback>
+              </Avatar>
+
+              <div className="mb-4 w-full text-center">
+                <div className="mb-4 rounded-lg bg-blue-50 p-4 shadow-sm">
+                  <p className="text-left text-sm text-gray-700">
+                    <strong>Name:</strong> {project.name}
+                  </p>
+                  <p className="text-left text-sm text-gray-700">
+                    <strong>StartDate:</strong> {project.startDate}
+                  </p>
+                  <p className="text-left text-sm text-gray-700">
+                    <strong>EndDate:</strong> {project.endDate}
+                  </p>
+                  <p className="text-left text-sm text-gray-700">
+                    <strong>Client:</strong> {project.client}
+                  </p>
+                  <p className="text-left text-sm text-gray-700">
+                    <strong>Stage:</strong> {project.projectStage}
+                  </p>
+                </div>
+              </div>
+              <Button
+                className="w-full rounded-md bg-blue-500 py-2 text-white transition-colors duration-300 ease-in-out hover:bg-blue-600"
+                onClick={() =>
+                  router.push(`/project/details/projectprofile/${project.id}`)
+                }
+              >
+                View details
+              </Button>
+            </div>
+          ))
+        ) : (
+          <div className="text-center text-gray-500">
+            No projects match your search query.
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default ProjectCard;
