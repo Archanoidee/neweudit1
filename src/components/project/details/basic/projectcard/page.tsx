@@ -85,46 +85,59 @@ const ProjectCard: React.FC<{ isNewStaffAdded: boolean }> = ({
           filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="flex flex-col items-center justify-between rounded-lg border border-dashed border-gray-300 bg-white p-6 shadow-xl transition-transform hover:scale-105 hover:shadow-2xl dark:border-gray-700"
+              className="mx-auto w-[300px] h-[300px] bg-white rounded-lg shadow-lg shadow-gray-300 p-5 overflow-hidden flex-wrap min-w-[300px] min-h-[400px]"
             >
-              <Avatar className="mb-4 h-16 w-16">
-                <AvatarImage
-                  src="https://allnvysbhq.cloudimg.io/v7/www.projectsmart.co.uk/img/project.png"
-                  alt={`Avatar for ${project.name}`}
-                />
-                <AvatarFallback>
-                  {project.name?.charAt(0)}
-                  {project.name?.charAt(1)}
-                </AvatarFallback>
-              </Avatar>
+              {/* Profile Image & Name */}
+              <div className="flex items-center mt-6">
+                <Avatar className="h-14 w-14">
+                  <AvatarImage
+                    src="https://allnvysbhq.cloudimg.io/v7/www.projectsmart.co.uk/img/project.png"
+                    alt={`Avatar for ${project.name}`}
+                  />
+                  <AvatarFallback>
+                    {project.name?.charAt(0)}
+                    {project.name?.charAt(1)}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="ml-5">
+                  <span className="block text-lg font-semibold text-gray-900 truncate w-[200px]">
+                    {project.name}
+                  </span>
+                  <span className="block text-lg font-semibold text-gray-900 truncate w-[200px]"> client: {project.client}</span>
 
-              <div className="mb-4 w-full text-center">
-                <div className="mb-4 rounded-lg bg-blue-50 p-4 shadow-sm">
-                  <p className="text-left text-sm text-gray-700">
-                    <strong>Name:</strong> {project.name}
-                  </p>
-                  <p className="text-left text-sm text-gray-700">
-                    <strong>StartDate:</strong> {project.startDate}
-                  </p>
-                  <p className="text-left text-sm text-gray-700">
-                    <strong>EndDate:</strong> {project.endDate}
-                  </p>
-                  <p className="text-left text-sm text-gray-700">
-                    <strong>Client:</strong> {project.client}
-                  </p>
-                  <p className="text-left text-sm text-gray-700">
-                    <strong>Stage:</strong> {project.projectStage}
-                  </p>
                 </div>
               </div>
-              <Button
-                className="w-full rounded-md bg-blue-500 py-2 text-white transition-colors duration-300 ease-in-out hover:bg-blue-600"
-                onClick={() =>
-                  router.push(`/project/details/projectprofile/${project.id}`)
-                }
-              >
-                View details
-              </Button>
+              {/* Project Info */}
+              
+              <div className="bg-gray-100 p-3 rounded-md text-sm">
+                
+                <p className="flex items-center gap-2 text-md">
+                  📅 Start Date: {project.startDate}
+                </p>
+                <p className="flex items-center gap-2 mt-2 text-md">
+                  📅 End Date: {project.endDate}
+                </p>
+                <p className="flex items-center gap-2 mt-2 text-md">
+                  📝 Project Stage: {project.projectStage}
+                  
+                </p>
+                <br />
+                <br />
+                <br /><br />
+                <br />
+              </div>
+
+              {/* View Details Button */}
+              <div className="mt-10 text-center">
+                <Button
+                  className="p-0 bg-blue-600 text-white px-5 py-2 text-sm rounded-md hover:bg-blue-700"
+                  onClick={() =>
+                    router.push(`/project/details/projectprofile/${project.id}`)
+                  }
+                >
+                  View Details
+                </Button>
+              </div>
             </div>
           ))
         ) : (
