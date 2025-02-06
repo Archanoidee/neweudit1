@@ -32,7 +32,7 @@ const Header = ({ className }: { className?: string }) => {
 
   return (
     <header className={cn("fixed inset-x-0 top-0 bg-white shadow-sm z-50", className)}>
-      <div className="flex items-center justify-between dark:bg-gray-950/90 p-4">
+      <div className="flex items-center justify-between dark:bg-gray-950/90 ">
         <Link href="/landing" className="relative h-20 w-20" prefetch={false}>
           <Image
             src="https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/v1446816802/mzzqlne1z4j96bodj1d8.png"
