@@ -87,33 +87,33 @@ export async function PUT(
   }
   
  
-// Handle DELETE request to remove a milestone by ID
-export async function DELETE(req: NextRequest, { params }: { params: { id?: string } }) {
-    try {
-      // Get milestone ID from params
-      const {id} = await params
+// // Handle DELETE request to remove a milestone by ID
+// export async function DELETE(req: NextRequest, { params }: { params: { id?: string } }) {
+//     try {
+//       // Get milestone ID from params
+//       const {id} = await params
   
-      if (!id) {
-        return NextResponse.json({ error: "Milestone ID is required" }, { status: 400 });
-      }
+//       if (!id) {
+//         return NextResponse.json({ error: "Milestone ID is required" }, { status: 400 });
+//       }
   
-      // Check if milestone exists before deleting
-      const existingMilestone = await prisma.milestone.findUnique({
-        where: { id },
-      });
+//       // Check if milestone exists before deleting
+//       const existingMilestone = await prisma.milestone.findUnique({
+//         where: { id },
+//       });
   
-      if (!existingMilestone) {
-        return NextResponse.json({ error: "Milestone not found" }, { status: 404 });
-      }
+//       if (!existingMilestone) {
+//         return NextResponse.json({ error: "Milestone not found" }, { status: 404 });
+//       }
   
-      // Delete the milestone
-      await prisma.milestone.delete({
-        where: { id },
-      });
+//       // Delete the milestone
+//       await prisma.milestone.delete({
+//         where: { id },
+//       });
   
-      return NextResponse.json({ message: "Milestone deleted successfully" }, { status: 200 });
-    } catch (error) {
-      console.error("Error deleting milestone:", error);
-      return NextResponse.json({ error: "Failed to delete milestone" }, { status: 500 });
-    }
-  }
+//       return NextResponse.json({ message: "Milestone deleted successfully" }, { status: 200 });
+//     } catch (error) {
+//       console.error("Error deleting milestone:", error);
+//       return NextResponse.json({ error: "Failed to delete milestone" }, { status: 500 });
+//     }
+//   }
