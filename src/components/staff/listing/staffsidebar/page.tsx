@@ -86,7 +86,7 @@ const AddStaffButton: React.FC<{
   return (
     <>
       <Button
-        className="transform rounded-full bg-blue-600 px-6 py-3 text-white shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="transform rounded-full bg-indigo-800 hover:bg-indigo-800 px-6 py-3 text-white shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         onClick={openSidebar}
       >
         Add Staff
@@ -100,20 +100,19 @@ const AddStaffButton: React.FC<{
                 Close
               </Button>
               <Button
-                className="bg-blue-600 text-white hover:bg-blue-700"
+                className="text-white bg-indigo-800 hover:bg-indigo-800 "
                 type="submit"
               >
                 Save
               </Button>
             </div>
-
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
                 <label className="mb-2 block text-sm font-medium">
                   Salutation
                 </label>
                 <Select value={salutation} onValueChange={setSalutation}>
-                  <SelectTrigger className="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <SelectTrigger className="rounded-md border   border-gray-100  bg-gray-100  p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <SelectValue placeholder="Select your Salutation" />
                   </SelectTrigger>
                   <SelectContent>
@@ -141,7 +140,7 @@ const AddStaffButton: React.FC<{
                   onChange={(e) => setFirstName(e.target.value)}
                   className={`${
                     !firstName ? "border-red-600 focus:ring-red-500" : ""
-                  } rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                  } rounded-md borderborder-gray-100  bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 />
               </div>
 
@@ -157,7 +156,7 @@ const AddStaffButton: React.FC<{
                   onChange={(e) => setLastName(e.target.value)}
                   className={`${
                     !lastName ? "border-red-600 focus:ring-red-500" : ""
-                  } rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                  } rounded-md borderborder-gray-100  bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 />
               </div>
               <div>
@@ -172,7 +171,7 @@ const AddStaffButton: React.FC<{
                   onChange={(e) => setEmail(e.target.value)}
                   className={`${
                     !email ? "border-red-600 focus:ring-red-500" : ""
-                  } rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                  } rounded-md borderborder-gray-100  bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 />
               </div>
               <div>
@@ -184,7 +183,7 @@ const AddStaffButton: React.FC<{
                   placeholder="Contact Number"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className=" border-red-600 focus:ring-red-500 rounded-md borderborder-gray-100  bg-gray-100 p-2 focus:outline-none focus:ring-2 "
                   required
                   pattern="^\d{10,}$"
                   title="Please enter at least 10 digits"
@@ -199,7 +198,7 @@ const AddStaffButton: React.FC<{
                   placeholder="Enter your id"
                   value={employeeId}
                   onChange={(e) => setEmployeeId(e.target.value)}
-                  className="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="  border-red-600 focus:ring-red-500 rounded-md borderborder-gray-100  bg-gray-100 p-2 focus:outline-none focus:ring-2"
                 />
               </div>
               <div>
@@ -211,7 +210,7 @@ const AddStaffButton: React.FC<{
                   placeholder="DD/MM/YYYY"
                   value={dateOfBirth}
                   onChange={(e) => setDateOfBirth(e.target.value)}
-                  className="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="rounded-md borderborder-gray-100  bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
               <div>
@@ -219,7 +218,7 @@ const AddStaffButton: React.FC<{
                   Languages Preferences
                 </label>
                 <Select value={languages} onValueChange={setLanguages}>
-                  <SelectTrigger className="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <SelectTrigger className="rounded-md borderborder-gray-100  bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <SelectValue placeholder="Select your languages" />
                   </SelectTrigger>
                   <SelectContent>
@@ -234,7 +233,7 @@ const AddStaffButton: React.FC<{
               <div>
                 <label className="mb-2 block text-sm font-medium">Gender</label>
                 <Select value={gender} onValueChange={setGender}>
-                  <SelectTrigger className="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <SelectTrigger className="rounded-md borderborder-gray-100  bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <SelectValue placeholder="Select your gender" />
                   </SelectTrigger>
                   <SelectContent>
@@ -247,7 +246,7 @@ const AddStaffButton: React.FC<{
               <div>
                 <label className="mb-2 block text-sm font-medium">Role</label>
                 <Select value={role} onValueChange={setRole}>
-                  <SelectTrigger className="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <SelectTrigger className="rounded-md borderborder-gray-100  bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <SelectValue placeholder="Select your Role" />
                   </SelectTrigger>
                   <SelectContent>
@@ -264,7 +263,7 @@ const AddStaffButton: React.FC<{
                   Blood Group
                 </label>
                 <Select value={bloodgroup} onValueChange={setBloodgroup}>
-                  <SelectTrigger className="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <SelectTrigger className="rounded-md borderborder-gray-100  bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <SelectValue placeholder="Select Blood Group" />
                   </SelectTrigger>
                   <SelectContent>
@@ -284,7 +283,7 @@ const AddStaffButton: React.FC<{
                   Marital Status
                 </label>
                 <Select value={maritalstatus} onValueChange={setMaritalStatus}>
-                  <SelectTrigger className="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <SelectTrigger className="rounded-md borderborder-gray-100  bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <SelectValue placeholder=" Marital Status" />
                   </SelectTrigger>
                   <SelectContent>
@@ -306,7 +305,7 @@ const AddStaffButton: React.FC<{
                   placeholder="Enter your nationality"
                   value={nationality}
                   onChange={(e) => setNationality(e.target.value)}
-                  className="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="rounded-md borderborder-gray-100  bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -319,7 +318,7 @@ const AddStaffButton: React.FC<{
                   placeholder="Enter your designation"
                   value={designation}
                   onChange={(e) => setDesignation(e.target.value)}
-                  className="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="rounded-md borderborder-gray-100  bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
               <div>
@@ -331,7 +330,7 @@ const AddStaffButton: React.FC<{
                   placeholder="Enter department"
                   value={department}
                   onChange={(e) => setDepartment(e.target.value)}
-                  className="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="rounded-md borderborder-gray-100  bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
               <div>
@@ -343,7 +342,7 @@ const AddStaffButton: React.FC<{
                   placeholder="Parents/spouse Name"
                   value={parentsspousename}
                   onChange={(e) => setParentsSpouseName(e.target.value)}
-                  className="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="rounded-md borderborder-gray-100  bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
               <div>
@@ -355,7 +354,7 @@ const AddStaffButton: React.FC<{
                   placeholder="Identification mark"
                   value={identificationmark}
                   onChange={(e) => setIdentificationMark(e.target.value)}
-                  className="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="rounded-md borderborder-gray-100  bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
               <div>
@@ -366,7 +365,7 @@ const AddStaffButton: React.FC<{
                   placeholder="Enter address here"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
-                  className="block w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="block w-full rounded-md borderborder-gray-100  bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
               <div>

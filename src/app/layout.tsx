@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css"; // Ensure this is imported correctly
 import { Toaster } from "@/components/ui/shadcn/toaster";
+import Providers from "./providers";
 import Header from "@/components/layout/header";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,11 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Toaster />
-        <main className="flex flex-col">
-          <Header className="px-8" />
-          {children}
-        </main>
+        <Providers>
+          <Toaster />
+          <main className="flex flex-col">
+            <Header className="px-8" />
+            {children}
+          </main>
+        </Providers>
       </body>
     </html>
   );

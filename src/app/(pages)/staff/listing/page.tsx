@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/shadcn/input";
 import AddStaffButton from "@/components/staff/listing/staffsidebar/page";
 import StaffCard from "@/components/staff/listing/stafftile/page";
 import axios from "axios";
+import { Search } from "lucide-react";
 
 const StaffListing: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -51,18 +52,18 @@ const StaffListing: React.FC = () => {
         {/* Search bar on the left and AddStaffButton on the right */}
         <div className="mb-4 flex items-center justify-between">
           {/* Search bar on the left */}
-          <div className="relative w-full max-w-md mt-14">
-            <Input
-              type="text"
-              placeholder="Search..."
-              className="w-full rounded-xl border border-gray-300 p-4 pl-12 pr-6 shadow-lg transition-all duration-300 ease-in-out hover:shadow-2xl focus:border-blue-500 focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)} // Update search query state
-            />
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 transform text-xl text-gray-500">
-              🔍
-            </span>
-          </div>
+          <div className="  relative w-full max-w-md mt-14 bg-white rounded-lg border-0 border-gray-300 p-1 flex items-center">
+  <Input
+    type="text"
+    placeholder="Search Content"
+    className="w-full rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-stone-300"
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+  />
+  <button className="w-20 bg-indigo-800 p-3 rounded-lg flex items-center justify-center">
+    <Search className="text-white" size={20} />
+  </button>
+</div>
           {/* AddStaffButton on the right */}
           <AddStaffButton setIsNewStaffAdded={setIsNewStaffAdded} />{" "}
         </div>

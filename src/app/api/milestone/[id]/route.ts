@@ -43,7 +43,6 @@ export async function PUT(
     try {
       // Await params to access 'id'
       const { id } = await params;
-  
       const formData = await req.json(); // Extract raw formData from the request body
   
       // Validate the presence of ID and formData
@@ -85,7 +84,6 @@ export async function PUT(
       );
     }
   }
-  
  
 // // Handle DELETE request to remove a milestone by ID
 // export async function DELETE(req: NextRequest, { params }: { params: { id?: string } }) {

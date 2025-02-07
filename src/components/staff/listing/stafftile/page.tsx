@@ -1,9 +1,10 @@
-"use client"; 
+"use client";
 
 import { Button } from "@/components/ui/shadcn/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/shadcn/avatar";
 import { useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/shadcn/badge";
+import { Mail, Phone, User } from "lucide-react"; // Importing icons from Lucide React
 
 // Function to shorten email
 const shortenEmail = (email: string | undefined) => {
@@ -33,57 +34,56 @@ const StaffCard: React.FC<StaffCardProps> = ({ id, profile }) => {
   const router = useRouter();
 
   return (
-    <div className="mx-auto w-[300px] h-[300px] bg-white rounded-lg shadow-lg shadow-gray-300 p-5 overflow-hidden 
-                    flex-wrap min-w-[300px] min-h-[400px]">
-      {/* Profile Image & Name */}
-      <div className="flex items-center mt-6 ">
-        <Avatar className="h-14 w-14">
-          <AvatarImage
-            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
-            alt={`${profile.firstName} ${profile.lastName}`}
-          />
-          <AvatarFallback>
-            {profile.firstName?.charAt(0)}
-            {profile.lastName?.charAt(0)}
-          </AvatarFallback>
-        </Avatar>
-        <div className="ml-5">
-          <span className="block text-lg font-semibold text-gray-900 truncate w-[200px]">
-            {profile.firstName} {profile.lastName}
-          </span>
-          <span className="text-gray-600 text-md">{profile.role}</span>
-        </div>
-      </div>
+    <div className="mx-auto w-[320px] bg-white rounded-3xl shadow-md p-6 overflow-hidden flex flex-col items-center border border-gray-200 ">
+      {/* Profile Image */}
+      <Avatar className="h-16 w-16 border-2 border-gray-300">
+        <AvatarImage
+          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+          alt={`${profile.firstName} ${profile.lastName}`}
+        />
+        <AvatarFallback className="text-lg font-bold">
+          {profile.firstName?.charAt(0)}
+          {profile.lastName?.charAt(0)}
+        </AvatarFallback>
+      </Avatar>
+
+      {/* Name & Role */}
+      <h2 className="text-lg font-semibold text-gray-900 mt-3">
+        {profile.firstName} {profile.lastName}
+      </h2>
+
       {/* Last Login & Status */}
-      <div className="flex justify-between items-center my-3">
-        <p className="text-xs pl-2">
-          Last login: <span className="font-bold text-blue-600 text-md">No activity found</span>
+      <div className="flex justify-between items-center w-full mt-3 px-3">
+        <p className="text-xs text-gray-600">
+          Last login <span className="font-bold text-blue-600">50 mins ago</span>
         </p>
         <Badge variant={profile.active ? "active" : "inactive"} className="border-0 p-1">
           {profile.active ? "Active" : "Inactive"}
         </Badge>
       </div>
+
       {/* Contact Info */}
-      <div className="bg-gray-100 p-3 rounded-md text-sm">
-        <p className="flex items-center gap-2 text-md">
-          📧 <span title={profile.gmail}>{shortenEmail(profile.gmail)}</span>
+      <div className= "pl-12  bg-gray-100 p-3 rounded-md text-sm w-full mt-3  ">
+        <p className="flex items-center gap-2 text-gray-700">
+          <User className="w-5 h-5 text-blue-700  " /> {profile.role}
         </p>
-        <p className="flex items-center gap-2 mt-2 text-md">📞+91 {profile.contactNumber}</p>
-     
-      {/* View Details Button */}
-      <br />
-      <br />
-      <br />
-      <br />
+        <p className="flex items-center gap-2 mt-2 text-gray-700">
+          <Mail className="w-5 h-5 text-blue-700" /> <span title={profile.gmail}>{shortenEmail(profile.gmail)}</span>
+        </p>
+        <p className="flex items-center gap-2 mt-2 text-gray-700">
+          <Phone className="w-5 h-5 text-blue-700" /> {profile.contactNumber}
+        </p>
       </div>
-     
-      <div className="mt-10 text-center " >  <Button
-          className="  p-0 bg-blue-600 text-white px-5 py-2 text-sm rounded-md hover:bg-blue-700"
-          onClick={() => router.push(`/staff/details/${id}`)}
-        >
-          View Details
-        </Button></div>
+
+      {/* View Details Button */}
+      <Button
+        className="mt-4 w-full bg-indigo-800 hover:bg-indigo-800 text-white py-2 rounded-full font-medium text-sm"
+        onClick={() => router.push(`/staff/details/${id}`)}
+      >
+        View details
+      </Button>
     </div>
   );
 };
+
 export default StaffCard;

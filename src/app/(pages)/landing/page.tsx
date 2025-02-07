@@ -6,7 +6,7 @@ import { CardFooter } from "@/components/ui/shadcn/card";
 import { CardHeader } from "@/components/ui/shadcn/card";
 import { CardDescription } from "@/components/ui/shadcn/card";
 import { CardTitle } from "@/components/ui/shadcn/card";
-import { NAVIGATION_CARDS } from "../../../../constants/home";
+import { NAVIGATION_CARDS } from "@/constants/home";
 import Link from "next/link";
 
 const Dashboard = () => {

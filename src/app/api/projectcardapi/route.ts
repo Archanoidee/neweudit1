@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 // Define the ProjectData type
 interface ProjectData {
+
+  id:string
   name: string;
   owner: string;
   manager: string;
@@ -33,7 +35,8 @@ export async function GET(req: NextRequest) {
       const projectData = project.project as unknown as ProjectData;
 
       return {
-        id: project.id,
+        _id:project.id,
+        id: projectData.id,
         name: projectData.name,
         owner: projectData.owner,
         manager: projectData.manager,

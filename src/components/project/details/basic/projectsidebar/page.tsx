@@ -231,7 +231,7 @@ const AddprojectButton: React.FC<{
         <div className="mb-6 flex items-center justify-between">
           <h1 className="ml-11 text-2xl font-semibold">Projects</h1>
           <Button
-            className="mr-11 transform rounded-full bg-blue-600 px-6 py-3 text-white shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className=" mr-11 transform rounded-xl bg-indigo-800 px-6 py-3 text-white shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:bg-indigo-800 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             onClick={openSidebar}
           >
             Add project

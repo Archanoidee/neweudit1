@@ -155,7 +155,7 @@ const ProfilePage: React.FC = () => {
     <div className="mt-20">
       <ClientOnlyComponent>
         <div className="h-screen min-h-screen w-full bg-gray-50 p-10">
-          <Card className="max-w-10xl mx-auto rounded-lg p-6 shadow-lg">
+          <Card className="max-w-10xl mx-auto rounded-lg p-5 shadow-lg">
             <div className="mb-10 flex flex-wrap gap-8 border-b text-lg">
               <Button
                 variant="link"
@@ -176,23 +176,24 @@ const ProfilePage: React.FC = () => {
                       Personal Information
                     </h3>
 
-                    <div className="flex gap-6">
+                    <div className="flex gap-5">
+                     
                       <Button
-                        className="rounded bg-blue-500 px-4 py-2 text-white transition-colors duration-200 hover:bg-blue-800"
-                        onClick={() => router.push("/staff/listing")}
-                      >
-                        Cancel
-                      </Button>
-                      <Button
-                        className="rounded bg-blue-500 px-4 py-2 text-white transition-colors duration-200 hover:bg-blue-800"
+                        className="rounded bg-indigo-800 hover:bg-indigo-800 px-4 py-2 text-white transition-colors duration-200"
                         onClick={handleSave}
                         disabled={loading}
                       >
                         {loading ? "Saving..." : "Save"}
                       </Button>
+                      <Button
+                        className=" hover:bg-stone-100 rounded border-gray-100  bg-gray-100 px-4 py-2 text-black transition-colors duration-200 "
+                        onClick={() => router.push("/staff/listing")}
+                      >
+                        Cancel
+                      </Button>
                     </div>
                   </div>
-                  <div className="mb-10 flex items-center gap-6">
+                  <div className="mb-10 flex items-center gap-5">
                     <img
                       src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
                       alt="Profile Avatar"
@@ -214,7 +215,7 @@ const ProfilePage: React.FC = () => {
                           type="text"
                           readOnly
                           value={formData.active ? "Active" : "Inactive"}
-                          className={`w-24 rounded-md p-1 pl-3 text-sm ${
+                          className={`  w-24 rounded-md p-1 pl-3 text-sm ${
                             formData.active
                               ? "border-green-500 bg-green-100 text-green-700"
                               : "border-red-500 bg-red-100 text-red-700"
@@ -227,7 +228,7 @@ const ProfilePage: React.FC = () => {
                         {/* Button on the right */}
                         <Button
                           onClick={handleToggle}
-                          className="absolute right-16 rounded bg-blue-500 px-3 py-1 text-sm text-white transition-colors duration-200 hover:bg-blue-800"
+                          className=" hover:bg-stone-100 text-indigo-600 absolute right-16 rounded border-gray-100  bg-gray-100 px-3 py-1 text-sm transition-colors duration-200"
                         >
                           {formData.active ? "Deactivate" : "Activate"}
                         </Button>
@@ -235,8 +236,8 @@ const ProfilePage: React.FC = () => {
                     </div>
                   </div>
                   <form>
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                      <div>
+                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+                      <div className=" p-5" >
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Salutation
                         </label>
@@ -249,7 +250,7 @@ const ProfilePage: React.FC = () => {
                             }))
                           }
                         >
-                          <SelectTrigger className="rounded-md border border-gray-300 bg-blue-100 p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          <SelectTrigger className="rounded-md border border-gray-100  bg-gray-100 p-2  focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <SelectValue placeholder="Select salutation">
                               {formData.salutation || "Select salutation"}
                             </SelectValue>
@@ -265,7 +266,7 @@ const ProfilePage: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </div>
-                      <div>
+                      <div className=" p-5" >
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           First Name<span className="text-red-600">*</span>
                         </label>
@@ -275,10 +276,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.firstName}
                           onChange={handleInputChange}
                           placeholder="First Name"
-                          className="rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div>
+                      <div className=" p-5" >
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Last Name<span className="text-red-600">*</span>
                         </label>
@@ -288,10 +289,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.lastName}
                           onChange={handleInputChange}
                           placeholder="Last Name"
-                          className="rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div>
+                      <div className=" p-5" >
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Date of Birth
                         </label>
@@ -301,10 +302,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.dateOfBirth}
                           onChange={handleInputChange}
                           placeholder="DD/MM/YYYY"
-                          className="rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div>
+                      <div className=" p-5" >
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Gender
                         </label>
@@ -315,7 +316,7 @@ const ProfilePage: React.FC = () => {
                             setFormData((prev) => ({ ...prev, gender: value }))
                           }
                         >
-                          <SelectTrigger className="rounded-md border border-gray-300 bg-blue-100 p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          <SelectTrigger className="rounded-md border   bg-gray-100 p-2  focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <SelectValue placeholder="Select your gender">
                               {formData.gender || "Select your gender"}
                             </SelectValue>
@@ -335,7 +336,7 @@ const ProfilePage: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </div>
-                      <div>
+                      <div className=" p-5" >
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Nationality
                         </label>
@@ -345,10 +346,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.nationality}
                           onChange={handleInputChange}
                           placeholder="Nationality"
-                          className="rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div>
+                      <div  className=" p-5" >
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Contact Number
                         </label>
@@ -358,10 +359,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.contactNumber}
                           onChange={handleInputChange}
                           placeholder="Contact Number"
-                          className="rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div>
+                      <div className=" p-5" >
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Email ID<span className="text-red-600">*</span>
                         </label>
@@ -372,10 +373,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.gmail}
                           onChange={handleInputChange}
                           placeholder="Gmail ID"
-                          className="rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div>
+                      <div  className=" p-5" >
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Employee ID
                         </label>
@@ -385,10 +386,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.employeeId}
                           onChange={handleInputChange}
                           placeholder="Employee ID"
-                          className="rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div>
+                      <div className=" p-5" >
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Roles
                         </label>
@@ -401,7 +402,7 @@ const ProfilePage: React.FC = () => {
                             }))
                           }
                         >
-                          <SelectTrigger className="rounded-md border border-gray-300 bg-blue-100 p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          <SelectTrigger className="rounded-md border   bg-gray-100 p-2  focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <SelectValue placeholder="Select role">
                               {formData.role || "Select role"}
                             </SelectValue>
@@ -418,7 +419,7 @@ const ProfilePage: React.FC = () => {
                         </Select>
                       </div>
 
-                      <div>
+                      <div  className=" p-5" >
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Department
                         </label>
@@ -428,10 +429,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.department}
                           onChange={handleInputChange}
                           placeholder="Department"
-                          className="rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div>
+                      <div className=" p-5" >
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Languages
                         </label>
@@ -444,7 +445,7 @@ const ProfilePage: React.FC = () => {
                             }))
                           }
                         >
-                          <SelectTrigger className="rounded-md border border-gray-300 bg-blue-100 p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          <SelectTrigger className="rounded-md border   bg-gray-100 p-2  focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <SelectValue placeholder="Select languages">
                               {formData.languages || "Select languages"}
                             </SelectValue>
@@ -461,7 +462,7 @@ const ProfilePage: React.FC = () => {
                         </Select>
                       </div>
 
-                      <div>
+                      <div  className=" p-5" >
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Marital Status
                         </label>
@@ -474,7 +475,7 @@ const ProfilePage: React.FC = () => {
                             }))
                           }
                         >
-                          <SelectTrigger className="rounded-md border border-gray-300 bg-blue-100 p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          <SelectTrigger className="rounded-md border   bg-gray-100 p-2  focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <SelectValue placeholder="Select marital status">
                               {formData.maritalstatus ||
                                 "Select marital status"}
@@ -491,7 +492,7 @@ const ProfilePage: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </div>
-                      <div>
+                      <div className=" p-5" >
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Blood Group
                         </label>
@@ -504,7 +505,7 @@ const ProfilePage: React.FC = () => {
                             }))
                           }
                         >
-                          <SelectTrigger className="rounded-md border border-gray-300 bg-blue-100 p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          <SelectTrigger className="rounded-md border   bg-gray-100 p-2  focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <SelectValue placeholder="Select blood group">
                               {formData.bloodgroup || "Select blood group"}
                             </SelectValue>
@@ -521,7 +522,7 @@ const ProfilePage: React.FC = () => {
                         </Select>
                       </div>
 
-                      <div>
+                      <div  className=" p-5" >
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Designation
                         </label>
@@ -531,7 +532,7 @@ const ProfilePage: React.FC = () => {
                           value={formData.designation}
                           onChange={handleInputChange}
                           placeholder="Designation"
-                          className="rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
                       <div className="hidden">
@@ -544,10 +545,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.active ? "Active" : "Inactive"} // Dynamically set the value
                           onChange={handleStatusChange}
                           placeholder="status"
-                          className="rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div>
+                      <div className=" p-5" >
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Identification Mark
                         </label>
@@ -557,10 +558,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.identificationmark}
                           onChange={handleInputChange}
                           placeholder="Enter Identification Mark"
-                          className="rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div>
+                      <div className=" p-5" >
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Parent/Spouse Name
                         </label>
@@ -570,11 +571,11 @@ const ProfilePage: React.FC = () => {
                           value={formData.parentsspousename}
                           onChange={handleInputChange}
                           placeholder="Enter Parent/Spouse Name"
-                          className="rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
 
-                      <div>
+                      <div  className=" p-5" >
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Address
                         </label>
@@ -583,7 +584,7 @@ const ProfilePage: React.FC = () => {
                           value={formData.address}
                           onChange={handletextareaChange}
                           placeholder="Address"
-                          className="f block w-full rounded-md border border-gray-300 bg-blue-100 p-2 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="f block w-full rounded-md border   bg-gray-100 p-2  focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
                     </div>
