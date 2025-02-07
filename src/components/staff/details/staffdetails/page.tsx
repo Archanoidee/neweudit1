@@ -172,24 +172,23 @@ const ProfilePage: React.FC = () => {
               ) : (
                 <div>
                   <div className="mt-10 flex items-center justify-between">
-                    <h3 className="mb-6 text-left text-xl font-semibold">
+                    <h3 className="mb-6 text-left text-xl font-semibold text-cyan-900">
                       Personal Information
                     </h3>
 
                     <div className="flex gap-5">
-                     
                       <Button
-                        className="rounded bg-indigo-800 hover:bg-indigo-800 px-4 py-2 text-white transition-colors duration-200"
+                        className="rounded-xl border-gray-100 bg-gray-100 px-4 py-2 text-black transition-colors duration-200 hover:bg-stone-100"
+                        onClick={() => router.push("/staff/listing")}
+                      >
+                        Cancel
+                      </Button>
+                      <Button
+                        className="rounded-xl bg-indigo-800 px-4 py-2 text-white transition-colors duration-200 hover:bg-indigo-800"
                         onClick={handleSave}
                         disabled={loading}
                       >
                         {loading ? "Saving..." : "Save"}
-                      </Button>
-                      <Button
-                        className=" hover:bg-stone-100 rounded border-gray-100  bg-gray-100 px-4 py-2 text-black transition-colors duration-200 "
-                        onClick={() => router.push("/staff/listing")}
-                      >
-                        Cancel
                       </Button>
                     </div>
                   </div>
@@ -200,22 +199,29 @@ const ProfilePage: React.FC = () => {
                       className="h-20 w-20 rounded-full object-cover"
                     />
                     <div>
-                      <h2 className="text-2xl font-semibold">
+                      <h2 className="text-2xl font-semibold text-cyan-900">
                         {formData.firstName} {formData.lastName}
                       </h2>
                       <p className="text-sm text-gray-600">
                         Team: {formData.employeeId}
+                      </p>
+                      <p className="text-xs text-gray-600">
+                        Last login{" "}
+                        <span className="font-bold text-blue-600">
+                          No Activivy Found
+                        </span>
                       </p>
                       <div
                         className="mt-2 flex items-center"
                         style={{ width: "100rem" }}
                       >
                         {/* Input on the left */}
+
                         <input
                           type="text"
                           readOnly
                           value={formData.active ? "Active" : "Inactive"}
-                          className={`  w-24 rounded-md p-1 pl-3 text-sm ${
+                          className={`w-24 rounded-xl p-1 pl-3 text-sm ${
                             formData.active
                               ? "border-green-500 bg-green-100 text-green-700"
                               : "border-red-500 bg-red-100 text-red-700"
@@ -226,9 +232,12 @@ const ProfilePage: React.FC = () => {
 
                         <div className="absolute right-0"></div>
                         {/* Button on the right */}
+                        <Button className=" text-red-600 absolute mr-24 right-16 rounded-xl border-gray-100 bg-gray-100 px-3 py-1 text-sm transition-colors duration-200 hover:bg-stone-100">
+                          Archive
+                        </Button>
                         <Button
                           onClick={handleToggle}
-                          className=" hover:bg-stone-100 text-indigo-600 absolute right-16 rounded border-gray-100  bg-gray-100 px-3 py-1 text-sm transition-colors duration-200"
+                          className="absolute right-16 rounded-xl border-gray-100 bg-gray-100 px-3 py-1 text-sm text-indigo-600 transition-colors duration-200 hover:bg-stone-100"
                         >
                           {formData.active ? "Deactivate" : "Activate"}
                         </Button>
@@ -237,7 +246,7 @@ const ProfilePage: React.FC = () => {
                   </div>
                   <form>
                     <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-                      <div className=" p-5" >
+                      <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Salutation
                         </label>
@@ -250,7 +259,7 @@ const ProfilePage: React.FC = () => {
                             }))
                           }
                         >
-                          <SelectTrigger className="rounded-md border border-gray-100  bg-gray-100 p-2  focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          <SelectTrigger className="rounded-md border border-gray-100 bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <SelectValue placeholder="Select salutation">
                               {formData.salutation || "Select salutation"}
                             </SelectValue>
@@ -266,7 +275,7 @@ const ProfilePage: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </div>
-                      <div className=" p-5" >
+                      <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           First Name<span className="text-red-600">*</span>
                         </label>
@@ -276,10 +285,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.firstName}
                           onChange={handleInputChange}
                           placeholder="First Name"
-                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div className=" p-5" >
+                      <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Last Name<span className="text-red-600">*</span>
                         </label>
@@ -289,10 +298,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.lastName}
                           onChange={handleInputChange}
                           placeholder="Last Name"
-                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div className=" p-5" >
+                      <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Date of Birth
                         </label>
@@ -302,10 +311,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.dateOfBirth}
                           onChange={handleInputChange}
                           placeholder="DD/MM/YYYY"
-                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div className=" p-5" >
+                      <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Gender
                         </label>
@@ -316,7 +325,7 @@ const ProfilePage: React.FC = () => {
                             setFormData((prev) => ({ ...prev, gender: value }))
                           }
                         >
-                          <SelectTrigger className="rounded-md border   bg-gray-100 p-2  focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          <SelectTrigger className="rounded-md border bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <SelectValue placeholder="Select your gender">
                               {formData.gender || "Select your gender"}
                             </SelectValue>
@@ -336,7 +345,7 @@ const ProfilePage: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </div>
-                      <div className=" p-5" >
+                      <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Nationality
                         </label>
@@ -346,10 +355,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.nationality}
                           onChange={handleInputChange}
                           placeholder="Nationality"
-                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div  className=" p-5" >
+                      <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Contact Number
                         </label>
@@ -359,10 +368,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.contactNumber}
                           onChange={handleInputChange}
                           placeholder="Contact Number"
-                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div className=" p-5" >
+                      <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Email ID<span className="text-red-600">*</span>
                         </label>
@@ -373,10 +382,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.gmail}
                           onChange={handleInputChange}
                           placeholder="Gmail ID"
-                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div  className=" p-5" >
+                      <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Employee ID
                         </label>
@@ -386,10 +395,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.employeeId}
                           onChange={handleInputChange}
                           placeholder="Employee ID"
-                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div className=" p-5" >
+                      <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Roles
                         </label>
@@ -402,7 +411,7 @@ const ProfilePage: React.FC = () => {
                             }))
                           }
                         >
-                          <SelectTrigger className="rounded-md border   bg-gray-100 p-2  focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          <SelectTrigger className="rounded-md border bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <SelectValue placeholder="Select role">
                               {formData.role || "Select role"}
                             </SelectValue>
@@ -419,7 +428,7 @@ const ProfilePage: React.FC = () => {
                         </Select>
                       </div>
 
-                      <div  className=" p-5" >
+                      <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Department
                         </label>
@@ -429,10 +438,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.department}
                           onChange={handleInputChange}
                           placeholder="Department"
-                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div className=" p-5" >
+                      <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Languages
                         </label>
@@ -445,7 +454,7 @@ const ProfilePage: React.FC = () => {
                             }))
                           }
                         >
-                          <SelectTrigger className="rounded-md border   bg-gray-100 p-2  focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          <SelectTrigger className="rounded-md border bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <SelectValue placeholder="Select languages">
                               {formData.languages || "Select languages"}
                             </SelectValue>
@@ -462,7 +471,7 @@ const ProfilePage: React.FC = () => {
                         </Select>
                       </div>
 
-                      <div  className=" p-5" >
+                      <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Marital Status
                         </label>
@@ -475,7 +484,7 @@ const ProfilePage: React.FC = () => {
                             }))
                           }
                         >
-                          <SelectTrigger className="rounded-md border   bg-gray-100 p-2  focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          <SelectTrigger className="rounded-md border bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <SelectValue placeholder="Select marital status">
                               {formData.maritalstatus ||
                                 "Select marital status"}
@@ -492,7 +501,7 @@ const ProfilePage: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </div>
-                      <div className=" p-5" >
+                      <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Blood Group
                         </label>
@@ -505,7 +514,7 @@ const ProfilePage: React.FC = () => {
                             }))
                           }
                         >
-                          <SelectTrigger className="rounded-md border   bg-gray-100 p-2  focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          <SelectTrigger className="rounded-md border bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <SelectValue placeholder="Select blood group">
                               {formData.bloodgroup || "Select blood group"}
                             </SelectValue>
@@ -522,7 +531,7 @@ const ProfilePage: React.FC = () => {
                         </Select>
                       </div>
 
-                      <div  className=" p-5" >
+                      <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Designation
                         </label>
@@ -532,7 +541,7 @@ const ProfilePage: React.FC = () => {
                           value={formData.designation}
                           onChange={handleInputChange}
                           placeholder="Designation"
-                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
                       <div className="hidden">
@@ -545,10 +554,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.active ? "Active" : "Inactive"} // Dynamically set the value
                           onChange={handleStatusChange}
                           placeholder="status"
-                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div className=" p-5" >
+                      <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Identification Mark
                         </label>
@@ -558,10 +567,10 @@ const ProfilePage: React.FC = () => {
                           value={formData.identificationmark}
                           onChange={handleInputChange}
                           placeholder="Enter Identification Mark"
-                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div className=" p-5" >
+                      <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Parent/Spouse Name
                         </label>
@@ -571,11 +580,11 @@ const ProfilePage: React.FC = () => {
                           value={formData.parentsspousename}
                           onChange={handleInputChange}
                           placeholder="Enter Parent/Spouse Name"
-                          className="rounded-md border-gray-100  bg-gray-100  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
 
-                      <div  className=" p-5" >
+                      <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Address
                         </label>
@@ -584,7 +593,7 @@ const ProfilePage: React.FC = () => {
                           value={formData.address}
                           onChange={handletextareaChange}
                           placeholder="Address"
-                          className="f block w-full rounded-md border   bg-gray-100 p-2  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="f block w-full rounded-md border bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
                     </div>
