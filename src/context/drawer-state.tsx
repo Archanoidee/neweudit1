@@ -5,6 +5,7 @@ import { useSnapshot } from "valtio";
 import { store } from "./store";
 import { iSheetState } from "@/types";
 import SidebarCompenent from "@/components/layout/header/sidebar-comp";
+import AddProject from "@/components/common/drawer/add-project";
 
 const RenderDrawer = () => {
   const { sheetState } = useSnapshot(store);
@@ -14,7 +15,7 @@ const RenderDrawer = () => {
       case "add-staff":
         return <div>add staff</div>;
       case "add-project":
-        return <div>add project</div>;
+        return <AddProject/>
       case "profile":
         return <SidebarCompenent />;
       default:
@@ -33,7 +34,7 @@ export const handleDrawerOpen = (state: iSheetState, data?: any) => {
   }
 };
 
-export const handleSheetClose = () => {
+export const handleDrawerClose = () => {
   store.isSheetOpen = false;
 };
 

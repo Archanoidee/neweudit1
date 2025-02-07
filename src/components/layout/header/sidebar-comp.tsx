@@ -1,6 +1,6 @@
 "use client";
 
-import { handleSheetClose } from "@/context/drawer-state";
+import { handleDrawerClose } from "@/context/drawer-state";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -24,11 +24,10 @@ const SidebarCompenent = () => {
             <p className="text-sm text-gray-500">testing this profile</p>
           </div>
         </div>
-        <button className="font-bold text-red-500" onClick={handleSheetClose}>
+        <button className="font-bold text-red-500" onClick={handleDrawerClose}>
           Cancel
         </button>
       </div>
-
       {/* Sidebar Menu */}
       <div className="flex flex-col space-y-4">
         <button

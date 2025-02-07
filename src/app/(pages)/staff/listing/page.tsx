@@ -51,23 +51,22 @@ const StaffListing: React.FC = () => {
       <div className="relative min-h-screen bg-gray-50 p-6">
         {/* Search bar on the left and AddStaffButton on the right */}
         <div className="mb-4 flex items-center justify-between">
-          {/* Search bar on the left */}
-          <div className="  relative w-full max-w-md mt-14 bg-white rounded-lg border-0 border-gray-300 p-1 flex items-center">
-  <Input
-    type="text"
-    placeholder="Search Content"
-    className="w-full rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-stone-300"
-    value={searchQuery}
-    onChange={(e) => setSearchQuery(e.target.value)}
-  />
-  <button className="w-20 bg-indigo-800 p-3 rounded-lg flex items-center justify-center">
-    <Search className="text-white" size={20} />
-  </button>
+  {/* Search bar on the left */}
+  <div className="flex items-center gap-2 w-full max-w-md rounded-lg  p-1">
+    <Input
+      type="text"
+      placeholder="Search Content"
+      className=" ml-32 w-full rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-stone-300"
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+    />
+    <button className=" h-9 w-20 bg-indigo-800 p-3 rounded-lg flex items-center justify-center">
+      <Search className="text-white" size={20} />
+    </button>
+  </div>
+  {/* AddStaffButton on the right */}
+  <AddStaffButton setIsNewStaffAdded={setIsNewStaffAdded} />
 </div>
-          {/* AddStaffButton on the right */}
-          <AddStaffButton setIsNewStaffAdded={setIsNewStaffAdded} />{" "}
-        </div>
-
         {/* Staff listing grid */}
         <div className="mx-auto mt-6 grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-screen-xl">
   {filteredStaff.length > 0 ? (

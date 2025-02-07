@@ -8,13 +8,13 @@ import {
   SheetDescription,
   SheetTitle,
 } from "@/components/ui/shadcn/sheet";
-import RenderDrawer, { handleSheetClose } from "@/context/drawer-state";
+import RenderDrawer, { handleDrawerClose } from "@/context/drawer-state";
 import VisuallyHidden from "@/components/ui/visually-hidden";
 
 const GlobalDrawer = () => {
   const snap = useSnapshot(store);
   return (
-    <Sheet open={snap.isSheetOpen} onOpenChange={handleSheetClose}>
+    <Sheet open={snap.isSheetOpen} onOpenChange={handleDrawerClose}>
       <SheetContent
         side={snap?.sheetData?.side || "right"}
         className="min-w-full max-w-fit overflow-y-auto sm:w-full sm:min-w-fit"
