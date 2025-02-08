@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/shadcn/button";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 
@@ -16,13 +15,14 @@ const CurrentPath = ({ className }: { className?: string }) => {
   };
 
   return (
-    <Button
-      className={cn("text-xl disabled:opacity-100", className)}
-      variant="ghost"
-      disabled
+    <div
+      className={cn(
+        "border-primary-blue text-primary-blue inline-flex items-center rounded-b-sm border-b-4 px-1 text-xl font-semibold",
+        className
+      )}
     >
       {getPageTitle()}
-    </Button>
+    </div>
   );
 };
 
