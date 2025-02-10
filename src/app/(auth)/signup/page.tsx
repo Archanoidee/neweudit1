@@ -10,13 +10,9 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (formData: FormData) => {
-    console.log(formData);
-
     setLoading(true);
-
     startTransition(async () => {
       const res = await loginSignup(formData, false);
-
       if (res?.error) {
         // Check if res is defined before accessing its error property
         toast({ title: res.error, variant: "destructive" });

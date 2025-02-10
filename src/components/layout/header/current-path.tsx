@@ -9,6 +9,10 @@ const CurrentPath = ({ className }: { className?: string }) => {
     if (pathname === "/landing") return "Home";
     const segments = pathname.split("/").filter((segment) => segment !== "");
     const limitedSegments = segments.slice(0, 2);
+    // Check if the second word exists and its length exceeds 10
+    if (limitedSegments[1] && limitedSegments[1].length > 10) {
+      limitedSegments[1] = "Details";
+    }
     return limitedSegments
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");

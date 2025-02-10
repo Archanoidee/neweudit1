@@ -1,10 +1,11 @@
-import React from 'react'
-import TeamCard from '@/components/project/details/team/teamtils/page'
+import React from "react";
+import TeamCard from "@/components/project/details/team/team-card";
+
 const page = () => {
   return (
     <div>
-      <TeamCard/>
+      <TeamCard />
     </div>
-  )
-}
-export default page
+  );
+};
+export default page;

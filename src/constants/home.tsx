@@ -14,7 +14,7 @@ export const NAVIGATION_CARDS = [
     icon: <UserIcon className={iconClassName} />,
     title: "Staff",
     description: "Manage and View staff information with ease.",
-    link : {title: "show", href: "/staff/listing" },
+    link : {title: "show", href: "/staffs" },
   },
   {
     id: 2,

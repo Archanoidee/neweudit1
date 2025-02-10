@@ -78,7 +78,7 @@ const StaffCard: React.FC<StaffCardProps> = ({ id, profile }) => {
       {/* View Details Button */}
       <Button
         className="mt-4 w-full bg-indigo-800 hover:bg-indigo-800 text-white py-2 rounded-full font-medium text-sm"
-        onClick={() => router.push(`/staff/details/${id}`)}
+        onClick={() => router.push(`/staff/${id}`)}
       >
         View details
       </Button>

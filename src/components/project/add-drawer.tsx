@@ -13,7 +13,7 @@ import {
 import axios from "axios";
 import { handleDrawerClose } from "@/context/drawer-state";
 
-const AddprojectDrawer = () => {
+const AddProjectDrawer = () => {
   const [formData, setFormData] = useState({
     id: "",
     name: "",
@@ -128,10 +128,6 @@ const AddprojectDrawer = () => {
           } else {
             console.error("Unexpected response format:", response.data);
           }
-          const staffData = response.data as {
-            data: { firstName: string; lastName: string }[];
-          };
-          console.log("Staff Names:", staffData.data);
         } else {
           const errorData = response.data as { error: string };
           console.error("Failed to fetch staff names:", errorData.error);
@@ -292,10 +288,7 @@ const AddprojectDrawer = () => {
                 <Input
                   placeholder="Search Owner"
                   value={ownerSearch}
-                  onChange={(e) => {
-                    setOwnerSearch(e.target.value);
-                    console.log("Owner Search:", e.target.value); // Debugging
-                  }}
+                  onChange={(e) => setOwnerSearch(e.target.value)}
                   className="mb-2 w-full rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {filteredOwners.length > 0 ? (
@@ -603,4 +596,4 @@ const AddprojectDrawer = () => {
     </div>
   );
 };
-export default AddprojectDrawer;
+export default AddProjectDrawer;

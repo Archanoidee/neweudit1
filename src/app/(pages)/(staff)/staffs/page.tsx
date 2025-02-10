@@ -51,34 +51,34 @@ const StaffListing: React.FC = () => {
       <div className="relative min-h-screen bg-gray-50 p-6">
         {/* Search bar on the left and AddStaffButton on the right */}
         <div className="mb-4 flex items-center justify-between">
-  {/* Search bar on the left */}
-  <div className="flex items-center gap-2 w-full max-w-md rounded-lg  p-1">
-    <Input
-      type="text"
-      placeholder="Search Content"
-      className=" ml-32 w-full rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-stone-300"
-      value={searchQuery}
-      onChange={(e) => setSearchQuery(e.target.value)}
-    />
-    <button className=" h-9 w-20 bg-indigo-800 p-3 rounded-lg flex items-center justify-center">
-      <Search className="text-white" size={20} />
-    </button>
-  </div>
-  {/* AddStaffButton on the right */}
-  <AddStaffButton setIsNewStaffAdded={setIsNewStaffAdded} />
-</div>
+          {/* Search bar on the left */}
+          <div className="flex w-full max-w-md items-center gap-2 rounded-lg p-1">
+            <Input
+              type="text"
+              placeholder="Search Content"
+              className="ml-32 w-full rounded-lg px-3 py-2 outline-none placeholder:text-stone-300 focus:ring-2 focus:ring-blue-500"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button className="flex h-9 w-20 items-center justify-center rounded-lg bg-indigo-800 p-3">
+              <Search className="text-white" size={20} />
+            </button>
+          </div>
+          {/* AddStaffButton on the right */}
+          <AddStaffButton setIsNewStaffAdded={setIsNewStaffAdded} />
+        </div>
         {/* Staff listing grid */}
-        <div className="mx-auto mt-6 grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-screen-xl">
-  {filteredStaff.length > 0 ? (
-    filteredStaff.map((staff, index) => (
-      <StaffCard key={index} id={staff.id} profile={staff.profile} />
-    ))
-  ) : (
-    <p className="col-span-full text-center text-gray-500">
-      No staff members found.
-    </p>
-  )}
-</div>
+        <div className="mx-auto mt-6 grid max-w-screen-xl grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {filteredStaff.length > 0 ? (
+            filteredStaff.map((staff, index) => (
+              <StaffCard key={index} id={staff.id} profile={staff.profile} />
+            ))
+          ) : (
+            <p className="col-span-full text-center text-gray-500">
+              No staff members found.
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );

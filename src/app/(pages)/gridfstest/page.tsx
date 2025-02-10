@@ -34,7 +34,6 @@ const FileUpload = () => {
       if (res.ok) {
         const data = await res.json();
         setMessage("File uploaded successfully");
-        console.log("File ID:", data.fileId);
         setFileId(data.fileId); // Store the fileId
         setFileUrl(URL.createObjectURL(file)); // Create URL for the uploaded file
         setFile(null); // Reset the file input
@@ -71,8 +70,8 @@ const FileUpload = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg">
-      <h2 className="text-2xl font-bold mb-4 text-center text-gray-700">
+    <div className="mx-auto max-w-lg rounded-lg bg-white p-6 shadow-md">
+      <h2 className="mb-4 text-center text-2xl font-bold text-gray-700">
         Upload File
       </h2>
 
@@ -81,13 +80,13 @@ const FileUpload = () => {
           <input
             type="file"
             onChange={handleFileChange}
-            className="block w-full text-gray-700 border border-gray-300 rounded-md py-2 px-3"
+            className="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-700"
           />
         </div>
         <button
           type="submit"
           disabled={loading}
-          className={`w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+          className={`w-full rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
             loading ? "cursor-wait" : ""
           }`}
         >
@@ -105,7 +104,7 @@ const FileUpload = () => {
           <Image
             src={fileUrl}
             alt="Uploaded File"
-            className="mx-auto mt-2 max-h-64 object-cover rounded-md shadow-md"
+            className="mx-auto mt-2 max-h-64 rounded-md object-cover shadow-md"
           />
         </div>
       )}
@@ -114,7 +113,7 @@ const FileUpload = () => {
         <div className="mt-4 text-center">
           <button
             onClick={handleDownload}
-            className="py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="rounded-md bg-green-600 px-4 py-2 text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
           >
             Download File
           </button>

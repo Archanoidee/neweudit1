@@ -5,24 +5,22 @@ import { useSnapshot } from "valtio";
 import { store } from "./store";
 import { iSheetState } from "@/types";
 import SidebarCompenent from "@/components/layout/header/sidebar-comp";
-import AddProject from "@/components/common/drawer/add-project";
+import AddProjectDrawer from "@/components/project/add-drawer";
 
 const RenderDrawer = () => {
   const { sheetState } = useSnapshot(store);
-
-  const RenderDrawer = useMemo(() => {
+  return useMemo(() => {
     switch (sheetState) {
       case "add-staff":
         return <div>add staff</div>;
       case "add-project":
-        return <AddProject/>
+        return <AddProjectDrawer />;
       case "profile":
         return <SidebarCompenent />;
       default:
         return null;
     }
   }, [sheetState]);
-  return RenderDrawer;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

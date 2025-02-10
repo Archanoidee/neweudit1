@@ -19,7 +19,7 @@ interface Project {
   projectStage: string;
 }
 
-const ProjectCard = () => {
+const ProjectsListing = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
@@ -52,36 +52,34 @@ const ProjectCard = () => {
     );
   }
   return (
-    <div className="px-6 pb-6">
+    <>
       {/* Search bar */}
-      <div className="mb-6 flex items-center justify-start border-black pl-7">
-  <div className="relative mt-14 flex w-full items-center rounded-lg border-0 border-gray-300 bg-white p-1">
-    {/* Search Input & Button */}
-    <div className="flex max-w-md flex-1 items-center gap-2">
-      <input
-        type="text"
-        className="w-72 rounded-lg border border-gray-300 px-3 py-2 outline-none placeholder:text-stone-300 focus:ring-2 focus:ring-blue-500"
-        placeholder="Search Content"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-      <button className="flex w-20 items-center justify-center rounded-lg bg-indigo-800 p-3">
-        <Search className="text-white" size={20} />
-      </button>
-    </div>
+      <div className="relative mt-10 flex w-full items-center rounded-lg border-0 border-gray-300 bg-white p-1">
+        {/* Search Input & Button */}
+        <div className="flex max-w-md flex-1 items-center gap-2">
+          <input
+            type="text"
+            className="w-72 rounded-lg border border-gray-300 px-3 py-2 outline-none placeholder:text-stone-300 focus:ring-2 focus:ring-blue-500"
+            placeholder="Search Content"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button className="flex w-20 items-center justify-center rounded-lg bg-indigo-800 p-3">
+            <Search className="text-white" size={20} />
+          </button>
+        </div>
 
-    {/* Add Project Button - Moved to Right End */}
-    <Button
-      className=" mr-12  ml-auto transform rounded-xl bg-indigo-800 px-6 py-3 text-white shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:bg-indigo-800 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-      onClick={() => handleDrawerOpen("add-project")}
-    >
-      Add Project
-    </Button>
-  </div>
-</div>
+        {/* Add Project Button - Moved to Right End */}
+        <Button
+          className="ml-auto mr-12 transform rounded-xl bg-indigo-800 px-6 py-3 text-white shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:bg-indigo-800 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onClick={() => handleDrawerOpen("add-project")}
+        >
+          Add Project
+        </Button>
+      </div>
 
       {/* Grid layout for cards */}
-      <div className="grid grid-cols-1 gap-6 px-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {filteredProjects.map((project) => (
           <div
             key={project.id}
@@ -106,17 +104,15 @@ const ProjectCard = () => {
 
             <Button
               className="mt-5 w-full rounded-full bg-indigo-800 py-2 text-sm font-medium text-white hover:bg-indigo-800"
-              onClick={() =>
-                router.push(`/project/details/projectprofile/${project._id}`)
-              }
+              onClick={() => router.push(`/project/${project._id}`)}
             >
               View Details
             </Button>
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
-export default ProjectCard;
+export default ProjectsListing;

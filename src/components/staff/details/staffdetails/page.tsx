@@ -21,7 +21,6 @@ const ProfilePage: React.FC = () => {
   const router = useRouter();
   // const id = searchParams?.get("id");
   const { id } = useParams();
-  console.log(id);
 
   const [formData, setFormData] = useState({
     active: true,
@@ -51,20 +50,16 @@ const ProfilePage: React.FC = () => {
     bloodgroups: [],
     roles: [],
   });
-  console.log(formData.active);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (id) {
-      console.log("hai");
       const fetchUserData = async () => {
         setLoading(true);
         try {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const response = await axios.get<any>(`/api/staff/${id}`);
-          console.log(response);
-
           setFormData({
             active: response.data.profile?.active || false,
             firstName: response.data.profile.firstName || "",
@@ -92,7 +87,6 @@ const ProfilePage: React.FC = () => {
             bloodgroups: response.data.dropdown.bloodgroups || [],
             roles: response.data.dropdown.roles || [],
           });
-          console.log(response.data);
         } catch (error) {
           console.error("Error fetching user data:", error);
           setError("Error fetching user data");
@@ -103,12 +97,12 @@ const ProfilePage: React.FC = () => {
       fetchUserData();
     }
   }, [id]);
-  console.log(formData);
-  console.log("first", formData.firstName);
+
   const handletextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
   const handleStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -116,12 +110,12 @@ const ProfilePage: React.FC = () => {
       [name]: value == "Active" ? true : false,
     }));
   };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  console.log(formData.role);
   const handleSave = async () => {
     setLoading(true);
     try {
@@ -130,7 +124,7 @@ const ProfilePage: React.FC = () => {
 
       if (response.status === 200) {
         alert("Profile updated successfully");
-        router.push(`/staff/details/${id}`); // Redirect on success
+        router.push("/staffs"); // Redirect on success
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -140,6 +134,7 @@ const ProfilePage: React.FC = () => {
       setLoading(false);
     }
   };
+
   // Handle toggle for both the switch and button
   const handleToggle = () => {
     const action = formData.active ? "deactivate" : "activate"; // Determine the action
@@ -179,7 +174,7 @@ const ProfilePage: React.FC = () => {
                     <div className="flex gap-5">
                       <Button
                         className="rounded-xl border-gray-100 bg-gray-100 px-4 py-2 text-black transition-colors duration-200 hover:bg-stone-100"
-                        onClick={() => router.push("/staff/listing")}
+                        onClick={() => router.push("/staffs")}
                       >
                         Cancel
                       </Button>
@@ -232,7 +227,7 @@ const ProfilePage: React.FC = () => {
 
                         <div className="absolute right-0"></div>
                         {/* Button on the right */}
-                        <Button className=" text-red-600 absolute mr-24 right-16 rounded-xl border-gray-100 bg-gray-100 px-3 py-1 text-sm transition-colors duration-200 hover:bg-stone-100">
+                        <Button className="absolute right-16 mr-24 rounded-xl border-gray-100 bg-gray-100 px-3 py-1 text-sm text-red-600 transition-colors duration-200 hover:bg-stone-100">
                           Archive
                         </Button>
                         <Button
