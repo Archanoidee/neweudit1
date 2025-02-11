@@ -209,26 +209,29 @@ const ProjectForm: React.FC = () => {
     };
     fetchData();
   }, [id]);
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
-
   return (
     <div className="rounded-lg bg-white p-8 shadow-md">
       <form>
-        <div className="mt-6 flex items-center justify-between">
+        <div className=" flex items-center justify-between">
           <h1 className="mb-6 text-xl font-semibold underline">General Info</h1>
           <div className="flex gap-4">
             <Button
-              className="rounded bg-blue-900 px-4 py-2 text-white transition-colors duration-200 hover:bg-blue-800"
-              onClick={(e) => {
+                        className="rounded-xl border-gray-100 bg-gray-100 px-4 py-2 text-black transition-colors duration-200 hover:bg-stone-100"
+                        onClick={(e) => {
                 e.preventDefault();
                 router.push("/projects");
               }}
             >
               Cancel
             </Button>
-            <Button variant="default" onClick={handleSave} disabled={loading}>
+            <Button
+              className="rounded-xl bg-indigo-800 px-4 py-2 text-white transition-colors duration-200 hover:bg-indigo-800"
+              variant="default"
+              onClick={handleSave}
+              disabled={loading}
+            >
               {loading ? "Saving..." : "Save"}
             </Button>
           </div>
@@ -245,7 +248,7 @@ const ProjectForm: React.FC = () => {
               id="id"
               name="id"
               placeholder="Enter your ID"
-              className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.id}
               onChange={handleInputChange}
             />
@@ -261,7 +264,7 @@ const ProjectForm: React.FC = () => {
               id="name"
               name="name"
               placeholder="Enter your name"
-              className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.name}
               onChange={handleInputChange}
             />
@@ -276,7 +279,7 @@ const ProjectForm: React.FC = () => {
                 setFormData((prev) => ({ ...prev, category: value }))
               }
             >
-              <SelectTrigger className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <SelectTrigger className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <SelectValue
                   placeholder={formData.category || "Select category"}
                 />
@@ -306,7 +309,7 @@ const ProjectForm: React.FC = () => {
               value={formData.owner}
               name="owner"
             >
-              <SelectTrigger className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <SelectTrigger className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <SelectValue placeholder="Select Owner" />
               </SelectTrigger>
               <SelectContent>
@@ -347,7 +350,7 @@ const ProjectForm: React.FC = () => {
               value={formData.manager}
               name="manager"
             >
-              <SelectTrigger className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <SelectTrigger className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <SelectValue placeholder="Select Manager" />
               </SelectTrigger>
               <SelectContent>
@@ -388,7 +391,7 @@ const ProjectForm: React.FC = () => {
               value={formData.client}
               name="client"
             >
-              <SelectTrigger className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <SelectTrigger className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <SelectValue placeholder="Select Client" />
               </SelectTrigger>
               <SelectContent>
@@ -426,7 +429,7 @@ const ProjectForm: React.FC = () => {
                 }))
               }
             >
-              <SelectTrigger className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <SelectTrigger className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <SelectValue
                   placeholder={
                     formData.projectProposalStatus || "Select status"
@@ -455,7 +458,7 @@ const ProjectForm: React.FC = () => {
                 setFormData((prev) => ({ ...prev, projectStage: value }))
               }
             >
-              <SelectTrigger className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <SelectTrigger className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <SelectValue
                   placeholder={formData.projectStage || "Select stage"}
                 />
@@ -480,12 +483,11 @@ const ProjectForm: React.FC = () => {
               id="workNumber"
               name="workNumber"
               placeholder="Enter work number"
-              className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.workNumber}
               onChange={handleInputChange}
             />
           </div>
-
           <div className="mt-1">
             <label
               htmlFor="startDate"
@@ -497,7 +499,7 @@ const ProjectForm: React.FC = () => {
               id="startDate"
               name="startDate"
               type="date"
-              className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.startDate}
               onChange={handleInputChange}
             />
@@ -513,7 +515,7 @@ const ProjectForm: React.FC = () => {
               id="endDate"
               name="endDate"
               type="date"
-              className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.endDate}
               onChange={handleInputChange}
             />
@@ -530,11 +532,12 @@ const ProjectForm: React.FC = () => {
               name="description"
               rows={4}
               placeholder="Enter project description"
-              className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.description}
               onChange={handleTextareaChange}
             />
           </div>
+          <div className=" " >
           <div className="mt-1">
             <h2 className="mb-4 text-lg font-semibold">Addresses</h2>
             {formData.addresses.map((addr, index) => (
@@ -543,7 +546,7 @@ const ProjectForm: React.FC = () => {
                   Title
                 </label>
                 <Input
-                  className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   type="text"
                   value={addr.title}
                   onChange={(e) =>
@@ -554,7 +557,7 @@ const ProjectForm: React.FC = () => {
                   Address
                 </label>
                 <textarea
-                  className="w-3/4 rounded-md border border-gray-300 bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value={addr.address}
                   onChange={(e) =>
                     handleAddressChange(index, "address", e.target.value)
@@ -573,7 +576,7 @@ const ProjectForm: React.FC = () => {
                   name="title"
                   value={newAddress.title}
                   onChange={handleNewAddressChange}
-                  className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <label className="mt-2 block text-sm font-medium text-gray-700">
                   Address
@@ -582,7 +585,7 @@ const ProjectForm: React.FC = () => {
                   name="address"
                   value={newAddress.address}
                   onChange={handleNewAddressChange}
-                  className="w-3/4 rounded-md border border-gray-300 bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <br />
                 <Button className="mt-2" onClick={handleAddNewAddress}>
@@ -599,6 +602,7 @@ const ProjectForm: React.FC = () => {
             >
               + Add New Address
             </Button>
+          </div>
           </div>
         </div>
       </form>

@@ -197,7 +197,6 @@ const AddProjectDrawer = () => {
         console.error("Error fetching customer names:", error);
       }
     };
-
     fetchCustomerNames();
   }, []);
 
@@ -241,7 +240,7 @@ const AddProjectDrawer = () => {
               id="id"
               name="id"
               placeholder="Enter project ID"
-              className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.id}
               onChange={handleInputChange}
               required
@@ -259,7 +258,7 @@ const AddProjectDrawer = () => {
               id="name"
               name="name"
               placeholder="Enter project name"
-              className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.name}
               onChange={handleChange}
               required
@@ -281,7 +280,8 @@ const AddProjectDrawer = () => {
               value={formData.owner}
               name="owner"
             >
-              <SelectTrigger className="w-3/4">
+              <SelectTrigger                   className="borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
                 <SelectValue placeholder="Select Owner" />
               </SelectTrigger>
               <SelectContent>
@@ -322,7 +322,8 @@ const AddProjectDrawer = () => {
               value={formData.manager}
               name="manager"
             >
-              <SelectTrigger className="w-3/4">
+              <SelectTrigger                   className="borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
                 <SelectValue placeholder="Select Manager" />
               </SelectTrigger>
               <SelectContent>
@@ -363,7 +364,8 @@ const AddProjectDrawer = () => {
               value={formData.client}
               name="client"
             >
-              <SelectTrigger className="w-3/4">
+              <SelectTrigger                   className="borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
                 <SelectValue placeholder="Select Client" />
               </SelectTrigger>
               <SelectContent>
@@ -402,7 +404,8 @@ const AddProjectDrawer = () => {
               }
               required
             >
-              <SelectTrigger className="w-3/4">
+              <SelectTrigger                   className="borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
                 <SelectValue placeholder="Select Category" />
               </SelectTrigger>
               <SelectContent>
@@ -431,7 +434,8 @@ const AddProjectDrawer = () => {
               }
               required
             >
-              <SelectTrigger className="w-3/4">
+              <SelectTrigger                   className="borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
                 <SelectValue placeholder="Select Proposal Status" />
               </SelectTrigger>
               <SelectContent>
@@ -461,7 +465,8 @@ const AddProjectDrawer = () => {
               }
               required
             >
-              <SelectTrigger className="w-3/4">
+              <SelectTrigger                   className="borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
                 <SelectValue placeholder="Select Project Stage" />
               </SelectTrigger>
               <SelectContent>
@@ -489,7 +494,7 @@ const AddProjectDrawer = () => {
               id="workNumber"
               name="workNumber"
               placeholder="Enter work number"
-              className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.workNumber}
               onChange={handleChange}
             />
@@ -507,7 +512,7 @@ const AddProjectDrawer = () => {
               id="startDate"
               name="startDate"
               type="date"
-              className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.startDate}
               onChange={handleChange}
             />
@@ -524,7 +529,7 @@ const AddProjectDrawer = () => {
               id="endDate"
               name="endDate"
               type="date"
-              className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.endDate}
               onChange={handleChange}
             />
@@ -541,7 +546,7 @@ const AddProjectDrawer = () => {
               id="description"
               name="description"
               placeholder="Enter description"
-              className="w-3/4 rounded-md border border-gray-300 bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className=" w-96 h-28  borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.description}
               onChange={handleChange}
             />
@@ -553,7 +558,7 @@ const AddProjectDrawer = () => {
               <br />
               <div className="flex gap-2">
                 <Input
-                  className="w-3/4 rounded-md bg-blue-100 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Title"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
@@ -562,7 +567,7 @@ const AddProjectDrawer = () => {
               <br />
               <div>
                 <textarea
-                  className="w-3/4 rounded-md border border-gray-300 bg-blue-100 p-3 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className=" w-96 h-28 borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Address"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
@@ -571,14 +576,13 @@ const AddProjectDrawer = () => {
               <Button type="button" onClick={addAddress}>
                 Add
               </Button>
-
               {/* Display added addresses */}
               <ul className="mt-2">
                 {addresses.map((addr, index) => (
                   <li
                     key={index}
-                    className="mt-1 flex justify-between rounded bg-gray-100 p-2"
-                  >
+                    className="borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
                     {addr.title}: {addr.address}
                     <Button
                       variant="outline"

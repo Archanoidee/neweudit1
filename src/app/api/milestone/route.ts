@@ -1,28 +1,54 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
-// Initialize Prisma Client
 const prisma = new PrismaClient();
 
-// Handle POST request: Add new milestone
 export async function POST(req: NextRequest) {
   try {
+    // Read request body
+    const body = await req.json();
+    console.log("Received Body:", body); // Log request body
+
+    // Check if request body is missing
+    if (!body || Object.keys(body).length === 0) {
+      return NextResponse.json({ error: "Request body is missing" }, { status: 400 });
+    }
+    // Extract fields including `projectId`
     const {
-     title,
-     startDate,
-     enddate,
-     description,
-     status,
-     milestonestatus,
-     milestonestartdate,
-     milestoneenddate,
-    reason,
-    goal,
-      // Expecting an array of { title, address }
-    } = await req.json();
-    
-    // Dropdown data (category, milestone stage, and milestone proposal status options)
+      projectId, // Make sure this is included
+      title,
+      startDate,
+      endDate,
+      description,
+      status,
+      milestoneStatus,
+      milestoneStartDate,
+      milestoneEndDate,
+      reason,
+      goal,
+    } = body;
+
+    // Validate `projectId`
+    if (!projectId || typeof projectId !== "string") {
+      return NextResponse.json({ error: "Invalid or missing projectId" }, { status: 400 });
+    }
+
+    // Prepare milestone data
+    const milestoneData = {
+      title,
+      startDate,
+      endDate,
+      description,
+      status,
+      milestoneStatus,
+      milestoneStartDate,
+      milestoneEndDate,
+      reason,
+      goal,
+    };
+
+    // Dropdown options
     const dropdown = {
       milestonestatus: [
         { Key: "OG", Value: "On Going" },
@@ -30,49 +56,52 @@ export async function POST(req: NextRequest) {
         { Key: "OH", Value: "On Hold" },
       ],
       status: [
-        { Key: "Y", Value: "yes" },
-        { Key: "N", Value: "no" },
+        { Key: "Y", Value: "Yes" },
+        { Key: "N", Value: "No" },
       ],
     };
 
-    // milestone data to store inside the `milestone` field
-    const milestoneData = {
-      title,
-     startDate,
-     enddate,
-     description,
-     status,
-     milestonestatus,
-     milestonestartdate,
-     milestoneenddate,
-    reason,
-    goal,// Store as an array of objects
-    };
-
-    // Create a new milestone record
+    // Save milestone with projectId
     const milestone = await prisma.milestone.create({
       data: {
-        milestone: milestoneData, // Store all milestone details in the `milestone` JSON field
-        dropdown,            // Store dropdown data in the `dropdown` JSON field
+        milestone: milestoneData,
+        dropdown,
+        projectId, // Now projectId is properly assigned
       },
     });
 
     return NextResponse.json(
-      { message: "milestone added successfully", milestone },
+      { message: "Milestone added successfully", milestone },
       { status: 201 }
     );
   } catch (error) {
     console.error("Error adding milestone:", error);
     return NextResponse.json({ error: "Failed to add milestone" }, { status: 500 });
+  } finally {
+    await prisma.$disconnect();
   }
 }
 
+
 export async function GET(req: NextRequest) {
   try {
-    const milestone = await prisma.milestone.findMany();
-    return NextResponse.json({ milestone }, { status: 200 });
+    // Extract projectId from query parameters
+    const { searchParams } = new URL(req.url);
+    const projectId = searchParams.get("projectId");
+
+    // Validate projectId
+    if (!projectId) {
+      return NextResponse.json({ error: "projectId is required" }, { status: 400 });
+    }
+
+    // Find milestones by projectId
+    const milestones = await prisma.milestone.findMany({
+      where: { projectId },
+    });
+
+    return NextResponse.json({ milestones }, { status: 200 });
   } catch (error) {
-    console.error("Error fetching milestone:", error);
-    return NextResponse.json({ error: "Failed to fetch milestone" }, { status: 500 });
+    console.error("Error fetching milestones:", error);
+    return NextResponse.json({ error: "Failed to fetch milestones" }, { status: 500 });
   }
 }

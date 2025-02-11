@@ -23,11 +23,11 @@ model Staff {
 }
 
 model project {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  project   Json
-  dropdown  Json
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  project     Json
+  dropdown    Json
+ createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model team {
@@ -52,4 +52,5 @@ model milestone {
   dropdown  Json
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+   projectId  String   @db.ObjectId
 }

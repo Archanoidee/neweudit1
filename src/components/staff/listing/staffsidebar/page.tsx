@@ -81,6 +81,8 @@ const AddStaffButton: React.FC<{
     }
   };
 
+  const departments = ["HR", "Engineering", "Marketing", "Sales", "Finance"]; // Add your departments here
+
   return (
     <>
       <Button
@@ -125,7 +127,6 @@ const AddStaffButton: React.FC<{
                   </SelectContent>
                 </Select>
               </div>
-
               <div>
                 <label className="mb-2 block text-sm font-medium">
                   First Name <span className="text-red-600">*</span>
@@ -141,7 +142,6 @@ const AddStaffButton: React.FC<{
                   } borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 />
               </div>
-
               <div>
                 <label className="mb-2 block text-sm font-medium">
                   Last Name <span className="text-red-600">*</span>
@@ -249,7 +249,6 @@ const AddStaffButton: React.FC<{
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="Admin">Admin</SelectItem>
-                    <SelectItem value="Editor">Editor</SelectItem>
                     <SelectItem value="Staff">Staff</SelectItem>
                     <SelectItem value="Hr">Hr</SelectItem>
                     <SelectItem value="Manager">Manager</SelectItem>
@@ -293,7 +292,6 @@ const AddStaffButton: React.FC<{
                   </SelectContent>
                 </Select>
               </div>
-
               <div>
                 <label className="mb-2 block text-sm font-medium">
                   Nationality
@@ -306,30 +304,50 @@ const AddStaffButton: React.FC<{
                   className="borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
-
               <div>
                 <label className="mb-2 block text-sm font-medium">
                   Designation
                 </label>
-                <Input
-                  type="text"
-                  placeholder="Enter your designation"
-                  value={designation}
-                  onChange={(e) => setDesignation(e.target.value)}
-                  className="borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                {/* "Manager",
+    "Developer",
+    "Designer",
+    "Marketing Lead",
+    "HR Executive", */}
+                <Select value={designation} onValueChange={setDesignation}>
+                  <SelectTrigger className="rounded-md border border-gray-100 bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <SelectValue placeholder="Select Designation" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Manager">
+                    Manager
+                    </SelectItem>
+                    <SelectItem value="Developer">
+                    Developer
+                    </SelectItem>
+                    <SelectItem value="Designer">Designer</SelectItem>
+                    <SelectItem value="Marketing Lead">
+                    Marketing Lead
+                    </SelectItem>
+                    <SelectItem value="HR Executive">HR Executive</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div>
                 <label className="mb-2 block text-sm font-medium">
                   Department
                 </label>
-                <Input
-                  type="text"
-                  placeholder="Enter department"
-                  value={department}
-                  onChange={(e) => setDepartment(e.target.value)}
-                  className="borderborder-gray-100 rounded-md bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                <Select onValueChange={(value) => setDepartment(value)}>
+                  <SelectTrigger className="rounded-md border border-gray-100 bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <SelectValue placeholder="Select department" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {departments.map((dept) => (
+                      <SelectItem key={dept} value={dept}>
+                        {dept}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div>
                 <label className="mb-2 block text-sm font-medium">

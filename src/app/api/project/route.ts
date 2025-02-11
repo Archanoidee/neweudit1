@@ -21,37 +21,52 @@ export async function POST(req: NextRequest) {
       endDate,
       description,
       addresses, // Expecting an array of { title, address }
+      milestone, // Expecting an array of milestone IDs
     } = await req.json();
 
     // Check if the project with the given id already exists
-    const existingProjects = await prisma.project.findMany({
-      where: {
-        project: {
-          // We're going to fetch all projects and check manually
-        },
-      },
-    });
+    const existingProjects = await prisma.project.findMany();
 
-    // Loop through the projects and check if the project id exists in the project JSON
-     // Loop through the staff records and check if the employeeId exists in the profile
     const isProjectidExists = existingProjects.some((existingProject) => {
       const projectData = existingProject.project as { id: string };
       return projectData.id === id;
     });
+
     if (isProjectidExists) {
       return NextResponse.json(
         { error: "Project ID already exists" },
         { status: 400 }
       );
     }
-    // Ensure addresses are stored as an array of objects
+
+    // Validate milestone IDs
+    if (milestone && milestone.length > 0) {
+      const existingMilestones = await prisma.milestone.findMany({
+        where: {
+          id: { in: milestone },
+        },
+      });
+
+      const validMilestone = existingMilestones.map((milestone) => milestone.id);
+
+      // Check if all provided milestone IDs exist
+      if (validMilestone.length !== milestone.length) {
+        return NextResponse.json(
+          { error: "One or more milestone IDs are invalid" },
+          { status: 400 }
+        );
+      }
+    }
+
+    // Format addresses
     const formattedAddresses = Array.isArray(addresses)
       ? addresses.map((item) => ({
           title: item.title || "",
           address: item.address || "",
         }))
       : [];
-    // Dropdown data (category, project stage, and project proposal status options)
+
+    // Dropdown data
     const dropdown = {
       categorys: [
         { Key: "GA", Value: "General Audit" },
@@ -74,7 +89,7 @@ export async function POST(req: NextRequest) {
       ],
     };
 
-    // Project data to store inside the `project` field
+    // Project data
     const projectData = {
       id,
       name,
@@ -88,14 +103,15 @@ export async function POST(req: NextRequest) {
       startDate,
       endDate,
       description,
-      addresses: formattedAddresses, // Store as an array of objects
+      addresses: formattedAddresses,
     };
 
-    // Create a new project record
+    // Create a new project with linked milestones
     const project = await prisma.project.create({
       data: {
-        project: projectData, // Store all project details in the `project` JSON field
-        dropdown,            // Store dropdown data in the `dropdown` JSON field
+        project: projectData,
+        dropdown,
+        
       },
     });
 

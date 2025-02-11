@@ -124,7 +124,7 @@ const ProfilePage: React.FC = () => {
 
       if (response.status === 200) {
         alert("Profile updated successfully");
-        router.push("/staffs"); // Redirect on success
+        router.push(`/staff/${id}`); // Redirect on success
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -145,7 +145,14 @@ const ProfilePage: React.FC = () => {
       setFormData((prev) => ({ ...prev, active: !prev.active }));
     }
   };
-
+  const departments = ["Engineering", "Marketing", "HR", "Sales", "Finance"]; // Add more if needed
+  const designations = [
+    "Manager",
+    "Developer",
+    "Designer",
+    "Marketing Lead",
+    "HR Executive",
+  ]; // Add more if needed
   return (
     <div className="mt-20">
       <ClientOnlyComponent>
@@ -390,9 +397,11 @@ const ProfilePage: React.FC = () => {
                           value={formData.employeeId}
                           onChange={handleInputChange}
                           placeholder="Employee ID"
+                          required
                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
+
                       <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Roles
@@ -421,20 +430,6 @@ const ProfilePage: React.FC = () => {
                             )}
                           </SelectContent>
                         </Select>
-                      </div>
-
-                      <div className="p-5">
-                        <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
-                          Department
-                        </label>
-                        <Input
-                          type="text"
-                          name="department"
-                          value={formData.department}
-                          onChange={handleInputChange}
-                          placeholder="Department"
-                          className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
                       </div>
                       <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
@@ -525,19 +520,56 @@ const ProfilePage: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </div>
+                      <div className="p-5">
+                        <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
+                          Department
+                        </label>
+                        <Select
+                          value={formData.department} // Set preselected value
+                          onValueChange={(value) =>
+                            setFormData((prev) => ({
+                              ...prev,
+                              department: value,
+                            }))
+                          }
+                        >
+                          <SelectTrigger className="rounded-md border-gray-100 bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <SelectValue placeholder="Select Department" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {departments.map((department) => (
+                              <SelectItem key={department} value={department}>
+                                {department}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
 
                       <div className="p-5">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Designation
                         </label>
-                        <Input
-                          type="text"
-                          name="designation"
-                          value={formData.designation}
-                          onChange={handleInputChange}
-                          placeholder="Designation"
-                          className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
+                        <Select
+                          value={formData.designation} // Set preselected value
+                          onValueChange={(value) =>
+                            setFormData((prev) => ({
+                              ...prev,
+                              designation: value,
+                            }))
+                          }
+                        >
+                          <SelectTrigger className="rounded-md border-gray-100 bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <SelectValue placeholder="Select Designation" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {designations.map((designation) => (
+                              <SelectItem key={designation} value={designation}>
+                                {designation}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                       </div>
                       <div className="hidden">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">

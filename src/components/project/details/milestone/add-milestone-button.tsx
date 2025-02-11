@@ -8,21 +8,26 @@ import { Label } from "@/components/ui/shadcn/label";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/shadcn/select";
 import axios from "axios";
 import { toast } from "sonner";
+import { useParams } from "next/navigation"; // Ensure useParams correctly extracts the project ID
 
 const AddMilestoneButton = () => {
+  const { id: projectId } = useParams(); // Extract projectId
+
   const [formData, setFormData] = useState({
     title: "",
     startDate: "",
-    enddate: "",
+    endDate: "", // Fixed field name
     description: "",
     status: "",
-    milestonestatus: "",
-    milestonestartdate: "",
-    milestoneenddate: "",
+    milestoneStatus: "", // Fixed field name
+    milestoneStartDate: "", // Fixed field name
+    milestoneEndDate: "", // Fixed field name
     reason: "",
     goal: "",
   });
+
   const [isSheetOpen, setIsSheetOpen] = useState(false); // State for controlling sheet visibility
+
   const milestoneStatusOptions = [
     { key: "OG", value: "On Going" },
     { key: "CM", value: "Completed" },
@@ -32,16 +37,20 @@ const AddMilestoneButton = () => {
     { key: "Y", value: "Yes" },
     { key: "N", value: "No" },
   ];
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   const handleSelectChange = (name: string, value: string) => {
     setFormData({ ...formData, [name]: value });
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post("/api/milestone", formData);
+      await axios.post("/api/milestone", { ...formData, projectId }); // Flattened request
+      console.log("Received Body:", { ...formData, projectId }); // Log request body
       toast.success("Milestone added successfully!"); // Show success message
       setIsSheetOpen(false); // Close the sheet
     } catch (error) {
@@ -49,6 +58,7 @@ const AddMilestoneButton = () => {
       toast.error("Failed to add milestone");
     }
   };
+
   return (
     <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
       <SheetTrigger asChild>
@@ -66,27 +76,29 @@ const AddMilestoneButton = () => {
             <Label htmlFor="title">Title</Label>
             <Input id="title" name="title" value={formData.title} onChange={handleChange} required />
           </div>
-          {/* Status (Dropdown) */}
-  
+
           {/* Milestone Start Date */}
           <div>
-            <Label htmlFor="milestonestartdate">Milestone Start Date</Label>
-            <Input type="date" id="milestonestartdate" name="milestonestartdate" value={formData.milestonestartdate} onChange={handleChange} required />
+            <Label htmlFor="milestoneStartDate">Milestone Start Date</Label>
+            <Input type="date" id="milestoneStartDate" name="milestoneStartDate" value={formData.milestoneStartDate} onChange={handleChange} required />
           </div>
+
           {/* Milestone End Date */}
           <div>
-            <Label htmlFor="milestoneenddate">Milestone End Date</Label>
-            <Input type="date" id="milestoneenddate" name="milestoneenddate" value={formData.milestoneenddate} onChange={handleChange} required />
+            <Label htmlFor="milestoneEndDate">Milestone End Date</Label>
+            <Input type="date" id="milestoneEndDate" name="milestoneEndDate" value={formData.milestoneEndDate} onChange={handleChange} required />
           </div>
-            {/* Description */}
-            <div>
+
+          {/* Description */}
+          <div>
             <Label htmlFor="description">Description</Label>
             <Input id="description" name="description" value={formData.description} onChange={handleChange} required />
           </div>
-           {/* Milestone Status (Dropdown) */}
-           <div>
-            <Label htmlFor="milestonestatus">Milestone Status</Label>
-            <Select onValueChange={(value) => handleSelectChange("milestonestatus", value)}>
+
+          {/* Milestone Status (Dropdown) */}
+          <div>
+            <Label htmlFor="milestoneStatus">Milestone Status</Label>
+            <Select onValueChange={(value) => handleSelectChange("milestoneStatus", value)}>
               <SelectTrigger>
                 <SelectValue placeholder="Select milestone status" />
               </SelectTrigger>
@@ -104,16 +116,20 @@ const AddMilestoneButton = () => {
             <Label htmlFor="goal">Goal</Label>
             <Input id="goal" name="goal" value={formData.goal} onChange={handleChange} required />
           </div>
-           {/* Start Date */}
-           <div>
+
+          {/* Start Date */}
+          <div>
             <Label htmlFor="startDate">Start Date</Label>
             <Input type="date" id="startDate" name="startDate" value={formData.startDate} onChange={handleChange} required />
           </div>
+
           {/* End Date */}
           <div>
-            <Label htmlFor="enddate">End Date</Label>
-            <Input type="date" id="enddate" name="enddate" value={formData.enddate} onChange={handleChange} required />
+            <Label htmlFor="endDate">End Date</Label>
+            <Input type="date" id="endDate" name="endDate" value={formData.endDate} onChange={handleChange} required />
           </div>
+
+          {/* Status (Dropdown) */}
           <div>
             <Label htmlFor="status">Status</Label>
             <Select onValueChange={(value) => handleSelectChange("status", value)}>
@@ -129,11 +145,13 @@ const AddMilestoneButton = () => {
               </SelectContent>
             </Select>
           </div>
-           {/* Reason */}
-           <div>
+
+          {/* Reason */}
+          <div>
             <Label htmlFor="reason">Reason</Label>
             <Input id="reason" name="reason" value={formData.reason} onChange={handleChange} required />
           </div>
+
           {/* Footer Buttons */}
           <SheetFooter className="mt-6 flex justify-between">
             <SheetClose asChild>
@@ -146,4 +164,5 @@ const AddMilestoneButton = () => {
     </Sheet>
   );
 };
+
 export default AddMilestoneButton;

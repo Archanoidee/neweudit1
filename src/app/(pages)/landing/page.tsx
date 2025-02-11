@@ -29,8 +29,8 @@ const Dashboard = () => {
             </CardHeader>
             <CardFooter className="flex justify-center">
               <Button
-                className="rounded bg-blue-500 px-4 py-2 capitalize text-white transition-colors duration-200 hover:bg-blue-800"
-                asChild
+              className="mt-5 w-24 rounded-full bg-indigo-800 p-0 text-sm font-medium text-white hover:bg-indigo-800"
+              asChild
               >
                 <Link href={item.link.href}>{item.link.title}</Link>
               </Button>

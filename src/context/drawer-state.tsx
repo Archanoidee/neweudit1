@@ -22,7 +22,6 @@ const RenderDrawer = () => {
     }
   }, [sheetState]);
 };
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const handleDrawerOpen = (state: iSheetState, data?: any) => {
   store.isSheetOpen = true;

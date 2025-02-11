@@ -88,6 +88,10 @@ const ProjectsListing = () => {
             <h2 className="truncate text-lg font-semibold text-blue-700">
               {project.name}
             </h2>
+            <p className="truncate text-black">
+                <strong>client:</strong>{" "}
+                <strong>{project.client}</strong>
+              </p>
             <p className="mt-5 text-sm text-gray-500"> {project.id}</p>
             <div className="mt-2 text-sm text-gray-700">
               <p className="truncate text-black">

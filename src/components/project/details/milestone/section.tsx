@@ -5,16 +5,17 @@ import axios from "axios";
 import { Button } from "@/components/ui/shadcn/button";
 import { Search } from "lucide-react";
 import AddMilestoneButton from "./add-milestone-button";
-// Define the type for Milestone data
+import { useParams } from "next/navigation"; // Use useParams to get projectId
+
 interface Milestone {
   id: string;
   milestone: {
     title: string;
     startDate: string;
-    enddate: string;
+    endDate: string;
     description: string;
     status: string;
-    milestonestatus: string;
+    milestoneStatus: string;
     milestonestartdate: string;
     milestoneenddate: string;
     reason: string;
@@ -24,28 +25,30 @@ interface Milestone {
 
 const Milestone: React.FC = () => {
   const [milestones, setMilestones] = useState<Milestone[]>([]);
+  const { id } = useParams();
 
   useEffect(() => {
-    // Fetch milestones when the component mounts
+    if (!id) return;
+
     const fetchMilestones = async () => {
       try {
-        const response = await axios.get("/api/milestone"); // Adjust API endpoint if needed
-        const data = response.data as { milestone: Milestone[] };
-        setMilestones(data.milestone); // Update state with fetched milestones
+        console.log("Fetching milestones...");
+        const response = await axios.get(`/api/milestone/${id}`);
+        console.log("API Response:", response.data);
+        const data = response.data as { milestones: Milestone[] };
+        setMilestones(data.milestones);
       } catch (error) {
         console.error("Error fetching milestones:", error);
       }
     };
 
     fetchMilestones();
-  }, []);
+  }, [id]);
 
   return (
     <div className="">
-      {/* Search bar */}
       <div className="mb-6 flex items-center justify-start border-black">
         <div className="relative flex w-full items-center rounded-lg border-0 border-gray-300 bg-white p-1">
-          {/* Search Input & Button */}
           <div className="flex max-w-md flex-1 items-center gap-2">
             <input
               type="text"
@@ -57,14 +60,12 @@ const Milestone: React.FC = () => {
             </button>
           </div>
 
-          {/* Add Milestone Button - Moved to Right End */}
           <div className="ml-auto mr-8 h-3">
             <AddMilestoneButton />
           </div>
         </div>
       </div>
 
-      {/* Grid layout for milestone cards */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {milestones.length > 0 ? (
           milestones.map((milestone) => (
@@ -76,7 +77,7 @@ const Milestone: React.FC = () => {
                 {milestone.milestone.title}
               </h2>
               <span className="mt-3 block w-max rounded-full border-gray-100 bg-gray-100 px-3 py-1 text-sm text-green-700">
-                {milestone.milestone.milestonestatus}
+                {milestone.milestone.milestoneStatus}
               </span>
               <br />
               <div className="mt-2 bg-gray-100 p-4 text-sm text-gray-700">
@@ -84,7 +85,7 @@ const Milestone: React.FC = () => {
                   <strong>Start Date:</strong> {milestone.milestone.startDate}
                 </p>
                 <p className="truncate text-black">
-                  <strong>End Date:</strong> {milestone.milestone.enddate}
+                  <strong>End Date:</strong> {milestone.milestone.endDate}
                 </p>
                 <p className="mt-2 truncate text-black">
                   <strong>Description:</strong>{" "}

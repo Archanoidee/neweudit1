@@ -22,6 +22,7 @@ export async function POST(req: NextRequest) {
       languages,
       role,
       active,
+      department,
       bloodgroup,
       parentsspousename,
       identificationmark,
@@ -96,10 +97,8 @@ export async function POST(req: NextRequest) {
         { Key: "MX", Value: "Mx." }, // Gender-neutral option
       ],
     };
-
     // Hash the employeeId to use as the password
     const hashedPassword = await bcrypt.hash(employeeId, 10);
-
     // Start a transaction to create both Staff and User records
     const [staff, user] = await prisma.$transaction([
       prisma.staff.create({
@@ -122,7 +121,7 @@ export async function POST(req: NextRequest) {
             designation,
             region: "Empty",
             role,
-            department: "Empty",
+            department,
             bloodgroup,
             parentsspousename,
             identificationmark,
