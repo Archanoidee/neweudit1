@@ -154,11 +154,11 @@ const ProfilePage: React.FC = () => {
     "HR Executive",
   ]; // Add more if needed
   return (
-    <div className="mt-20">
+    <div className="mt-7">
       <ClientOnlyComponent>
-        <div className="h-screen min-h-screen w-full bg-gray-50 p-10">
-          <Card className="max-w-10xl mx-auto rounded-lg p-5 shadow-lg">
-            <div className="mb-10 flex flex-wrap gap-8 border-b text-lg">
+        <div className=" h-screen min-h-screen w-full bg-gray-50 p-10">
+          <Card className="max-w-10xl mx-auto rounded-lg  shadow-lg">
+            <div className=" flex flex-wrap gap-8 border-b text-lg">
               <Button
                 variant="link"
                 className="w-full border-b-4 border-blue-600 px-6 py-3 text-center font-semibold text-blue-600 sm:w-auto"
@@ -172,9 +172,9 @@ const ProfilePage: React.FC = () => {
               ) : error ? (
                 <p className="text-red-500">{error}</p>
               ) : (
-                <div>
-                  <div className="mt-10 flex items-center justify-between">
-                    <h3 className="mb-6 text-left text-xl font-semibold text-cyan-900">
+                <div className="p-5" >
+                  <div className="mt-1 flex items-center justify-between">
+                    <h3 className="mb-2 text-left text-xl font-semibold text-cyan-900">
                       Personal Information
                     </h3>
 
@@ -194,11 +194,11 @@ const ProfilePage: React.FC = () => {
                       </Button>
                     </div>
                   </div>
-                  <div className="mb-10 flex items-center gap-5">
+                  <div className="flex items-center gap-5">
                     <img
                       src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
                       alt="Profile Avatar"
-                      className="h-20 w-20 rounded-full object-cover"
+                      className=" mb-14  h-16 w-16 rounded-full object-cover"
                     />
                     <div>
                       <h2 className="text-2xl font-semibold text-cyan-900">
@@ -214,7 +214,7 @@ const ProfilePage: React.FC = () => {
                         </span>
                       </p>
                       <div
-                        className="mt-2 flex items-center"
+                        className="mt-4 flex items-center"
                         style={{ width: "100rem" }}
                       >
                         {/* Input on the left */}
@@ -223,7 +223,7 @@ const ProfilePage: React.FC = () => {
                           type="text"
                           readOnly
                           value={formData.active ? "Active" : "Inactive"}
-                          className={`w-24 rounded-xl p-1 pl-3 text-sm ${
+                          className={` mb-5 w-24 rounded-xl p-1 pl-3 text-sm ${
                             formData.active
                               ? "border-green-500 bg-green-100 text-green-700"
                               : "border-red-500 bg-red-100 text-red-700"
@@ -248,7 +248,7 @@ const ProfilePage: React.FC = () => {
                   </div>
                   <form>
                     <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-                      <div className="p-5">
+                      <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Salutation
                         </label>
@@ -277,7 +277,7 @@ const ProfilePage: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </div>
-                      <div className="p-5">
+                      <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           First Name<span className="text-red-600">*</span>
                         </label>
@@ -290,7 +290,7 @@ const ProfilePage: React.FC = () => {
                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div className="p-5">
+                      <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Last Name<span className="text-red-600">*</span>
                         </label>
@@ -303,7 +303,7 @@ const ProfilePage: React.FC = () => {
                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div className="p-5">
+                      <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Date of Birth
                         </label>
@@ -316,7 +316,7 @@ const ProfilePage: React.FC = () => {
                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div className="p-5">
+                      <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Gender
                         </label>
@@ -347,7 +347,7 @@ const ProfilePage: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </div>
-                      <div className="p-5">
+                      <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Nationality
                         </label>
@@ -360,7 +360,7 @@ const ProfilePage: React.FC = () => {
                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div className="p-5">
+                      <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Contact Number
                         </label>
@@ -373,7 +373,7 @@ const ProfilePage: React.FC = () => {
                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div className="p-5">
+                      <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Email ID<span className="text-red-600">*</span>
                         </label>
@@ -387,7 +387,7 @@ const ProfilePage: React.FC = () => {
                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div className="p-5">
+                      <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Employee ID
                         </label>
@@ -402,7 +402,7 @@ const ProfilePage: React.FC = () => {
                         />
                       </div>
 
-                      <div className="p-5">
+                      <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Roles
                         </label>
@@ -431,7 +431,7 @@ const ProfilePage: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </div>
-                      <div className="p-5">
+                      <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Languages
                         </label>
@@ -461,7 +461,7 @@ const ProfilePage: React.FC = () => {
                         </Select>
                       </div>
 
-                      <div className="p-5">
+                      <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Marital Status
                         </label>
@@ -491,7 +491,7 @@ const ProfilePage: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </div>
-                      <div className="p-5">
+                      <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Blood Group
                         </label>
@@ -520,7 +520,7 @@ const ProfilePage: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </div>
-                      <div className="p-5">
+                      <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Department
                         </label>
@@ -546,7 +546,7 @@ const ProfilePage: React.FC = () => {
                         </Select>
                       </div>
 
-                      <div className="p-5">
+                      <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Designation
                         </label>
@@ -584,7 +584,7 @@ const ProfilePage: React.FC = () => {
                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div className="p-5">
+                      <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Identification Mark
                         </label>
@@ -597,7 +597,7 @@ const ProfilePage: React.FC = () => {
                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-                      <div className="p-5">
+                      <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Parent/Spouse Name
                         </label>
@@ -611,7 +611,7 @@ const ProfilePage: React.FC = () => {
                         />
                       </div>
 
-                      <div className="p-5">
+                      <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Address
                         </label>
