@@ -212,10 +212,10 @@ const ProjectForm: React.FC = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
   return (
-    <div className="rounded-lg bg-white p-8 shadow-md">
+    <div className="rounded-lg bg-white p-4 shadow-md">
       <form>
         <div className=" flex items-center justify-between">
-          <h1 className="mb-6 text-xl font-semibold underline">General Info</h1>
+          <h1 className="text-xl font-semibold underline">General Info</h1>
           <div className="flex gap-4">
             <Button
                         className="rounded-xl border-gray-100 bg-gray-100 px-4 py-2 text-black transition-colors duration-200 hover:bg-stone-100"
@@ -237,7 +237,7 @@ const ProjectForm: React.FC = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <div className="mt-10">
+          <div className="mt-4">
             <label
               htmlFor="id"
               className="block text-sm font-medium text-gray-700"
@@ -253,7 +253,7 @@ const ProjectForm: React.FC = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="mt-10">
+          <div className="mt-4">
             <label
               htmlFor="name"
               className="block text-sm font-medium text-gray-700"
@@ -269,7 +269,7 @@ const ProjectForm: React.FC = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="mt-7">
+          <div className="">
             <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
               Category
             </label>
@@ -279,7 +279,7 @@ const ProjectForm: React.FC = () => {
                 setFormData((prev) => ({ ...prev, category: value }))
               }
             >
-              <SelectTrigger className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <SelectTrigger className="w-3/4  rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <SelectValue
                   placeholder={formData.category || "Select category"}
                 />
@@ -538,10 +538,10 @@ const ProjectForm: React.FC = () => {
             />
           </div>
           <div className=" " >
-          <div className="mt-1">
+          <div className="">
             <h2 className="mb-4 text-lg font-semibold">Addresses</h2>
             {formData.addresses.map((addr, index) => (
-              <div key={index} className="p-4">
+              <div key={index} className="">
                 <label className="block text-sm font-medium text-gray-700">
                   Title
                 </label>

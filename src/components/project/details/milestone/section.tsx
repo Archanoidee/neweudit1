@@ -49,18 +49,18 @@ const Milestone: React.FC = () => {
     <div className="">
       <div className="mb-6 flex items-center justify-start border-black">
         <div className="relative flex w-full items-center rounded-lg border-0 border-gray-300 bg-white p-1">
-          <div className="flex max-w-md flex-1 items-center gap-2">
+          <div className="  flex max-w-md flex-1 items-center gap-2">
             <input
               type="text"
               className="w-72 rounded-lg border border-gray-300 px-3 py-2 outline-none placeholder:text-stone-300 focus:ring-2 focus:ring-blue-500"
               placeholder="Search Content"
             />
-            <button className="flex w-20 items-center justify-center rounded-lg bg-indigo-800 p-3">
+            <button className=" mb flex w-20 items-center justify-center rounded-lg bg-indigo-800 p-3">
               <Search className="text-white" size={20} />
             </button>
           </div>
 
-          <div className="ml-auto mr-8 h-3">
+          <div className="mb-5 ml-auto mr-8 h-3">
             <AddMilestoneButton />
           </div>
         </div>

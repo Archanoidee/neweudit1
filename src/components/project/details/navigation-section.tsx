@@ -38,7 +38,7 @@ const ProjectNavSection = () => {
     <Tabs
       value={currentTab}
       onValueChange={handleToggleTab}
-      className="mt-4 size-full"
+      className=" size-full"
     >
       <TabsList className="w-full justify-normal">
         {PROJECT_DETAILS_TABS.map((item) => (
@@ -55,7 +55,7 @@ const ProjectNavSection = () => {
         <TabsContent
           value={getTabValue(item.id, item.query, currentTab)}
           key={item.id}
-          className="mt-10"
+          className=""
         >
           {item.component && <item.component />}
         </TabsContent>
