@@ -227,7 +227,6 @@ const AddStaffButton: React.FC<{
                   className="rounded-md border border-gray-100 bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
-
               <div>
                 <label className="mb-2 block text-sm font-medium">
                   Religion
@@ -240,7 +239,6 @@ const AddStaffButton: React.FC<{
                   className="rounded-md border border-gray-100 bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
-
               <div>
                 <label className="mb-2 block text-sm font-medium">
                   Languages Preferences
@@ -338,11 +336,6 @@ const AddStaffButton: React.FC<{
                 <label className="mb-2 block text-sm font-medium">
                   Designation
                 </label>
-                {/* "Manager",
-    "Developer",
-    "Designer",
-    "Marketing Lead",
-    "HR Executive", */}
                 <Select value={designation} onValueChange={setDesignation}>
                   <SelectTrigger className="rounded-md border border-gray-100 bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <SelectValue placeholder="Select Designation" />

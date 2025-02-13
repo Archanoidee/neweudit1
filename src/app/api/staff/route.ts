@@ -21,6 +21,7 @@ export async function POST(req: NextRequest) {
       designation,
       languages,
       role,
+      archive,
       religion,
       worknumber,
       active,
@@ -114,6 +115,7 @@ export async function POST(req: NextRequest) {
             lastName,
             employeeId,
             gender,
+            archive,
             languages,
             dateOfBirth,
             maritalStatus: "Empty", // Example static data

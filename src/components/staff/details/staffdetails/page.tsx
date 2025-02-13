@@ -27,6 +27,7 @@ const ProfilePage: React.FC = () => {
     firstName: "",
     lastName: "",
     religion: "",
+    archive:"",
     worknumber: "",
     contactNumber: "",
     gmail: "",
@@ -65,6 +66,7 @@ const ProfilePage: React.FC = () => {
           setFormData({
             active: response.data.profile?.active || false,
             firstName: response.data.profile.firstName || "",
+            archive: response.data.profile.archive || "",
             religion: response.data.profile.religion || "",
             worknumber: response.data.profile.worknumber || "",
             lastName: response.data.profile.lastName || "",
@@ -157,6 +159,17 @@ const ProfilePage: React.FC = () => {
     "Marketing Lead",
     "HR Executive",
   ]; // Add more if needed
+
+    const [archived, setArchived] = useState(false); // Archive state
+  
+    const handleToggleArchive = () => {
+      const action = archived ? "unarchive" : "archive";
+      const confirmMessage = `Are you sure you want to ${action}?`;
+  
+      if (confirm(confirmMessage)) {
+        setArchived(!archived);
+      }
+    };
   return (
     <div className="mt-7">
       <ClientOnlyComponent>
@@ -238,9 +251,17 @@ const ProfilePage: React.FC = () => {
 
                         <div className="absolute right-0"></div>
                         {/* Button on the right */}
-                        <Button className="absolute right-16 mr-28 rounded-xl border-gray-100 bg-gray-100 px-3 py-1 text-sm text-red-600 transition-colors duration-200 hover:bg-stone-100">
-                          Archive
-                        </Button>
+                        <Button
+                        className="absolute right-16 mr-24 rounded-xl border-gray-100 bg-gray-100 px-3 py-1 text-sm text-red-600 transition-colors duration-200 hover:bg-stone-100"
+        variant="outline"
+        onClick={(e) => {
+          e.preventDefault();
+          handleToggleArchive();
+        }}
+      >
+        {archived ? "Unarchive" : "Archive"}
+      </Button>
+                        
                         <Button
                           onClick={handleToggle}
                           className="absolute right-16 rounded-xl border-gray-100 bg-gray-100 px-3 py-1 text-sm text-indigo-600 transition-colors duration-200 hover:bg-stone-100"
