@@ -1,15 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import axios from "axios";
 import { Input } from "@/components/ui/shadcn/input";
 import { Label } from "@/components/ui/shadcn/label";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/shadcn/select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/shadcn/select";
 import { Button } from "@/components/ui/shadcn/button";
 import { Textarea } from "@/components/ui/shadcn/textarea";
-import { CalendarIcon, TrashIcon } from "lucide-react";
-import { format } from "date-fns";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/shadcn/popover";
-import { Calendar } from "@/components/ui/shadcn/calendar";
 
 const milestoneStatusOptions = [
   { key: "OG", value: "On Going" },
@@ -23,74 +27,169 @@ const statusOptions = [
 ];
 
 const MilestoneProfile = () => {
-  const [goals, setGoals] = useState([{ goal: "", startDate: "", endDate: "", status: "" }]);
+  const { id } = useParams() as { id: string };
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    title: "",
+    startDate: "",
+    endDate: "",
+    description: "",
+    status: "",
+    milestoneStatus: "",
+    milestoneStartDate: "",
+    milestoneEndDate: "",
+    reason: "",
+    goal: "",
+  });
 
-  type GoalField = "goal" | "startDate" | "endDate" | "status";
-
-  const handleGoalChange = (index: number, field: GoalField, value: string) => {
-    const newGoals = [...goals];
-    newGoals[index][field] = value;
-    setGoals(newGoals);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const addGoal = () => {
-    setGoals([...goals, { goal: "", startDate: "", endDate: "", status: "" }]);
+  const handleSave = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.put(`/api/milestonedetails/${id}`, formData);
+      if (response.status === 200) {
+        alert("Milestone updated successfully");
+        router.push(`/milestone/${id}`);
+      }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.error("Error updating milestone:", error);
+      alert(error.response?.data?.error || "Failed to update milestone");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const removeGoal = (index: number) => {
-    const newGoals = goals.filter((_, i) => i !== index);
-    setGoals(newGoals);
-  };
+  useEffect(() => {
+    if (!id) return;
+
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get(`/api/milestonedetails/${id}`);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const milestone = (response.data as { milestone: any }).milestone || {};
+
+        setFormData({
+          title: milestone.title || "",
+          startDate: milestone.startDate || "",
+          endDate: milestone.endDate || "",
+          description: milestone.description || "",
+          status: milestone.status || "",
+          milestoneStatus: milestone.milestoneStatus || "",
+          milestoneStartDate: milestone.milestoneStartDate || "",
+          milestoneEndDate: milestone.milestoneEndDate || "",
+          reason: milestone.reason || "",
+          goal: milestone.goal || "",
+        });
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUser();
+  }, [id]);
 
   return (
-    <div className=" mt-12 space-y-6 p-6 border rounded-lg shadow-lg bg-white">
-      {/* Title */}
-      <div>
+    <form  onSubmit={(e) => e.preventDefault()} className="mt-12 space-y-6 rounded-lg border bg-gray-100 p-6 shadow-lg">
+        {/* Submit Button */}
+        <div className="flex justify-end">
+  <Button type="button" onClick={handleSave} disabled={loading}>
+    {loading ? "Saving..." : "Submit"}
+  </Button>
+</div>
+<div className="grid grid-cols-4  gap-4 p-4 bg-gray-100">
+     {/* Title */}
+     <div>
         <Label htmlFor="title">Title</Label>
-        <Input id="title" placeholder="Enter your title" />
-      </div>
+        <Input
+                                  className="rounded-md border-gray-100 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
 
-      {/* Dates */}
+        id="title" name="title" value={formData.title} onChange={handleInputChange} />
+      </div>
+</div>
+<div className="grid grid-cols-4  gap-4 p-4 bg-gray-100">
+  {/* Milestone Dates */}
+  <div>
+        <Label htmlFor="milestoneStartDate">Milestone Start Date</Label>
+        <Input
+                                  className="rounded-md border-gray-100 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+
+          type="date"
+          id="milestoneStartDate"
+          name="milestoneStartDate"
+          value={formData.milestoneStartDate}
+          onChange={handleInputChange}
+        />
+      </div>
       <div>
-        <div>
-          <Label htmlFor="startDate">Start Date</Label>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button variant="outline" className="w-full flex justify-between">
-                DD/MM/YY <CalendarIcon className="w-4 h-4" />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent>
-              <Calendar mode="single" />
-            </PopoverContent>
-          </Popover>
-        </div>
-        <div>
-          <Label htmlFor="endDate">End Date</Label>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button variant="outline" className="w-full flex justify-between">
-                DD/MM/YY <CalendarIcon className="w-4 h-4" />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent>
-              <Calendar mode="single" />
-            </PopoverContent>
-          </Popover>
-        </div>
-      </div>
+        <Label htmlFor="milestoneEndDate">Milestone End Date</Label>
+        <Input
+                                  className="rounded-md border-gray-100 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
 
+          type="date"
+          id="milestoneEndDate"
+          name="milestoneEndDate"
+          value={formData.milestoneEndDate}
+          onChange={handleInputChange}
+        />
+</div>
+</div>
       {/* Description */}
       <div>
         <Label htmlFor="description">Description</Label>
-        <Textarea id="description" placeholder="Enter here" className="h-24" />
+        <Textarea  className=" w-  h-64 "  id="description" name="description" value={formData.description} onChange={handleInputChange} />
+      </div>
+      {/* Milestone Status */}
+      <div className="w-96" >
+        <Label htmlFor="milestoneStatus">Milestone Status</Label>
+        <Select
+          value={formData.milestoneStatus}
+          onValueChange={(value) => setFormData({ ...formData, milestoneStatus: value })}
+        >
+          <SelectTrigger                           className="rounded-md border-gray-100 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+ >
+            <SelectValue placeholder="Select Milestone Status" />
+          </SelectTrigger>
+          <SelectContent>
+            {milestoneStatusOptions.map((option) => (
+              <SelectItem key={option.key} value={option.key}>
+                {option.value}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
-      {/* Status */}
+    
+      <div className="grid grid-cols-4  gap-4 p-4 bg-gray-100">
+      {/* Goal */}
       <div>
+        <Label htmlFor="goal">Goal</Label>
+        <Textarea                           className="rounded-md border-gray-100 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+ id="goal" name="goal" value={formData.goal} onChange={handleInputChange} />
+      </div>
+            {/* Dates */}
+            <div>
+        <Label htmlFor="startDate">Start Date</Label>
+        <Input                           className="rounded-md border-gray-100 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+ type="date" id="startDate" name="startDate" value={formData.startDate} onChange={handleInputChange} />
+      </div>
+      <div>
+        <Label htmlFor="endDate">End Date</Label>
+        <Input                           className="rounded-md border-gray-100 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+ type="date" id="endDate" name="endDate" value={formData.endDate} onChange={handleInputChange} />
+      </div>
+    {/* Status */}
+    <div>
         <Label htmlFor="status">Status</Label>
-        <Select>
-          <SelectTrigger>
+        <Select value={formData.status} onValueChange={(value) => setFormData({ ...formData, status: value })}>
+          <SelectTrigger                           className="rounded-md border-gray-100 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+ >
             <SelectValue placeholder="Select Status type" />
           </SelectTrigger>
           <SelectContent>
@@ -102,71 +201,15 @@ const MilestoneProfile = () => {
           </SelectContent>
         </Select>
       </div>
-
-      {/* Goals Section */}
-      <div>
-        <Label>Goal</Label>
-        {goals.map((goal, index) => (
-          <div key={index} className="flex items-center space-x-2 mt-2">
-            <Input
-              placeholder="Enter the goal"
-              value={goal.goal}
-              onChange={(e) => handleGoalChange(index, "goal", e.target.value)}
-            />
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button variant="outline" className="w-28">
-                  {goal.startDate || "Start Date"} <CalendarIcon className="w-4 h-4" />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent>
-                <Calendar
-                  mode="single"
-                  onSelect={(date) => handleGoalChange(index, "startDate", format(date!, "dd-MM-yyyy"))}
-                />
-              </PopoverContent>
-            </Popover>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button variant="outline" className="w-28">
-                  {goal.endDate || "End Date"} <CalendarIcon className="w-4 h-4" />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent>
-                <Calendar
-                  mode="single"
-                  onSelect={(date) => handleGoalChange(index, "endDate", format(date!, "dd-MM-yyyy"))}
-                />
-              </PopoverContent>
-            </Popover>
-            <Select onValueChange={(value) => handleGoalChange(index, "status", value)}>
-              <SelectTrigger>
-                <SelectValue placeholder="Select status type" />
-              </SelectTrigger>
-              <SelectContent>
-                {milestoneStatusOptions.map((option) => (
-                  <SelectItem key={option.key} value={option.key}>
-                    {option.value}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <Button variant="ghost" className="text-red-500" onClick={() => removeGoal(index)}>
-              <TrashIcon className="w-5 h-5" />
-            </Button>
-          </div>
-        ))}
-        <Button variant="outline" className="mt-2" onClick={addGoal}>
-          + Add Goal
-        </Button>
-      </div>
-
-      {/* Reason/Comments */}
-      <div>
+            {/* Reason / Comments */}
+            <div>
         <Label htmlFor="reason">Reason / Comments</Label>
-        <Textarea id="reason" placeholder="Enter here" className="h-24" />
+        <Textarea                           className="rounded-md border-gray-100 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+ id="reason" name="reason" value={formData.reason} onChange={handleInputChange} />
       </div>
-    </div>
+      </div>
+   
+    </form>
   );
 };
 

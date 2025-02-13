@@ -26,6 +26,8 @@ const ProfilePage: React.FC = () => {
     active: true,
     firstName: "",
     lastName: "",
+    religion: "",
+    worknumber: "",
     contactNumber: "",
     gmail: "",
     employeeId: "",
@@ -63,6 +65,8 @@ const ProfilePage: React.FC = () => {
           setFormData({
             active: response.data.profile?.active || false,
             firstName: response.data.profile.firstName || "",
+            religion: response.data.profile.religion || "",
+            worknumber: response.data.profile.worknumber || "",
             lastName: response.data.profile.lastName || "",
             contactNumber: response.data.profile.contactNumber || "",
             gmail: response.data.profile.gmail || "",
@@ -156,9 +160,9 @@ const ProfilePage: React.FC = () => {
   return (
     <div className="mt-7">
       <ClientOnlyComponent>
-        <div className=" h-screen min-h-screen w-full bg-gray-50 p-10">
-          <Card className="max-w-10xl mx-auto rounded-lg  shadow-lg">
-            <div className=" flex flex-wrap gap-8 border-b text-lg">
+        <div className="h-screen min-h-screen w-full bg-gray-50 p-10">
+          <Card className="max-w-10xl mx-auto rounded-lg shadow-lg">
+            <div className="flex flex-wrap gap-8 border-b text-lg">
               <Button
                 variant="link"
                 className="w-full border-b-4 border-blue-600 px-6 py-3 text-center font-semibold text-blue-600 sm:w-auto"
@@ -172,7 +176,7 @@ const ProfilePage: React.FC = () => {
               ) : error ? (
                 <p className="text-red-500">{error}</p>
               ) : (
-                <div className="p-5" >
+                <div className="p-5">
                   <div className="mt-1 flex items-center justify-between">
                     <h3 className="mb-2 text-left text-xl font-semibold text-cyan-900">
                       Personal Information
@@ -198,7 +202,7 @@ const ProfilePage: React.FC = () => {
                     <img
                       src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
                       alt="Profile Avatar"
-                      className=" mb-14  h-16 w-16 rounded-full object-cover"
+                      className="mb-14 h-16 w-16 rounded-full object-cover"
                     />
                     <div>
                       <h2 className="text-2xl font-semibold text-cyan-900">
@@ -223,7 +227,7 @@ const ProfilePage: React.FC = () => {
                           type="text"
                           readOnly
                           value={formData.active ? "Active" : "Inactive"}
-                          className={` mb-5 w-24 rounded-xl p-1 pl-3 text-sm ${
+                          className={`mb-5 w-24 rounded-xl p-1 pl-3 text-sm ${
                             formData.active
                               ? "border-green-500 bg-green-100 text-green-700"
                               : "border-red-500 bg-red-100 text-red-700"
@@ -234,7 +238,7 @@ const ProfilePage: React.FC = () => {
 
                         <div className="absolute right-0"></div>
                         {/* Button on the right */}
-                        <Button className="absolute right-16 mr-24 rounded-xl border-gray-100 bg-gray-100 px-3 py-1 text-sm text-red-600 transition-colors duration-200 hover:bg-stone-100">
+                        <Button className="absolute right-16 mr-28 rounded-xl border-gray-100 bg-gray-100 px-3 py-1 text-sm text-red-600 transition-colors duration-200 hover:bg-stone-100">
                           Archive
                         </Button>
                         <Button
@@ -247,11 +251,8 @@ const ProfilePage: React.FC = () => {
                     </div>
                   </div>
                   <form>
-                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-                      <div className="">
-                        <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
-                          Salutation
-                        </label>
+                      <div className="  grid grid-cols-3 gap-4 mb-6">
+                     
                         <Select
                           value={formData.salutation}
                           onValueChange={(value) =>
@@ -261,7 +262,7 @@ const ProfilePage: React.FC = () => {
                             }))
                           }
                         >
-                          <SelectTrigger className="rounded-md border border-gray-100 bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          <SelectTrigger className=" rounded-md border border-gray-100 bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <SelectValue placeholder="Select salutation">
                               {formData.salutation || "Select salutation"}
                             </SelectValue>
@@ -277,6 +278,8 @@ const ProfilePage: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </div>
+                      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+
                       <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           First Name<span className="text-red-600">*</span>
@@ -387,6 +390,36 @@ const ProfilePage: React.FC = () => {
                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
+                      <div className="">
+                        <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
+                          Work Number<span className="text-red-600">*</span>
+                        </label>
+                        <Input
+                          required
+                          type="text"
+                          name="worknumber"
+                          value={formData.worknumber}
+                          onChange={handleInputChange}
+                          placeholder="Work Number"
+                          className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+
+                      <div className="mt-4">
+                        <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
+                          Religion<span className="text-red-600">*</span>
+                        </label>
+                        <Input
+                          required
+                          type="text"
+                          name="religion"
+                          value={formData.religion}
+                          onChange={handleInputChange}
+                          placeholder="Religion"
+                          className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+
                       <div className="">
                         <label className="mb-3 block text-sm font-medium tracking-wide text-gray-900">
                           Employee ID

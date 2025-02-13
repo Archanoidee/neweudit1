@@ -20,6 +20,8 @@ const AddStaffButton: React.FC<{
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [worknumber, setWorkNumber] = useState("");
+  const [religion, setReligion] = useState("");
   const [employeeId, setEmployeeId] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [gender, setGender] = useState("");
@@ -47,6 +49,8 @@ const AddStaffButton: React.FC<{
         firstName,
         lastName,
         email,
+        religion,
+        worknumber,
         phone,
         employeeId,
         dateOfBirth,
@@ -213,6 +217,32 @@ const AddStaffButton: React.FC<{
               </div>
               <div>
                 <label className="mb-2 block text-sm font-medium">
+                  Work Number
+                </label>
+                <Input
+                  type="text"
+                  placeholder="Enter your work number"
+                  value={worknumber}
+                  onChange={(e) => setWorkNumber(e.target.value)}
+                  className="rounded-md border border-gray-100 bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-medium">
+                  Religion
+                </label>
+                <Input
+                  type="text"
+                  placeholder="Enter your religion"
+                  value={religion}
+                  onChange={(e) => setReligion(e.target.value)}
+                  className="rounded-md border border-gray-100 bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-medium">
                   Languages Preferences
                 </label>
                 <Select value={languages} onValueChange={setLanguages}>
@@ -318,15 +348,11 @@ const AddStaffButton: React.FC<{
                     <SelectValue placeholder="Select Designation" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Manager">
-                    Manager
-                    </SelectItem>
-                    <SelectItem value="Developer">
-                    Developer
-                    </SelectItem>
+                    <SelectItem value="Manager">Manager</SelectItem>
+                    <SelectItem value="Developer">Developer</SelectItem>
                     <SelectItem value="Designer">Designer</SelectItem>
                     <SelectItem value="Marketing Lead">
-                    Marketing Lead
+                      Marketing Lead
                     </SelectItem>
                     <SelectItem value="HR Executive">HR Executive</SelectItem>
                   </SelectContent>

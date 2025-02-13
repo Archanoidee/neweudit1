@@ -29,10 +29,45 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          blue: {
+            DEFAULT: "#282693",
+            sky: "#03ADEA",
+            violet: "#7754F6",
+            ocean: "#087EEC",
+          },
+          red: {
+            DEFAULT: "#FF0000",
+          },
+          green: {
+            DEFAULT: "#105C1C",
+          },
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+          blue: {
+            DEFAULT: "#9BA1FF",
+            navy: "#284B80",
+            ice: "#E2F7FF",
+            slate: "#555972",
+            steel: "#52566F",
+            lavender: "#908FC5",
+            cobalt: "#483EA8",
+          },
+          gray: {
+            DEFAULT: "",
+            silver: "#B3B3B3",
+            ash: "#818181",
+            graphite: "#6A6A6A",
+            cloud: "#F8F8F8",
+          },
+          green: {
+            DEFAULT: "#EAF0EB",
+          },
+          red: {
+            DEFAULT: "#F8EFED",
+            rust: "#87311C",
+          },
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",

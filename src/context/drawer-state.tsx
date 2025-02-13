@@ -6,7 +6,7 @@ import { store } from "./store";
 import { iSheetState } from "@/types";
 import SidebarCompenent from "@/components/layout/header/sidebar-comp";
 import AddProjectDrawer from "@/components/project/add-drawer";
-
+import AddProjectAddress from '@/components/project/details/general/add-addresses-drawer'
 const RenderDrawer = () => {
   const { sheetState } = useSnapshot(store);
   return useMemo(() => {
@@ -17,6 +17,8 @@ const RenderDrawer = () => {
         return <AddProjectDrawer />;
       case "profile":
         return <SidebarCompenent />;
+        case "add-project-address":
+        return <AddProjectAddress />;
       default:
         return null;
     }

@@ -42,13 +42,13 @@ const ProjectsListing = () => {
   // Filter projects based on name OR client
   const filteredProjects = projects.filter(
     (project) =>
-      project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      project.client.toLowerCase().includes(searchQuery.toLowerCase())
+      project?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project?.client?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   if (!projects.length) {
     return (
-      <div className="text-center text-gray-500">No projects available.</div>
+      <div className=" mt-10 text-center text-gray-500"> projects loading</div>
     );
   }
   return (
@@ -68,7 +68,6 @@ const ProjectsListing = () => {
             <Search className="text-white" size={20} />
           </button>
         </div>
-
         {/* Add Project Button - Moved to Right End */}
         <Button
           className="ml-auto mr-12 transform rounded-xl bg-indigo-800 px-6 py-3 text-white shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:bg-indigo-800 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -77,7 +76,6 @@ const ProjectsListing = () => {
           Add Project
         </Button>
       </div>
-
       {/* Grid layout for cards */}
       <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {filteredProjects.map((project) => (
@@ -118,5 +116,4 @@ const ProjectsListing = () => {
     </>
   );
 };
-
 export default ProjectsListing;

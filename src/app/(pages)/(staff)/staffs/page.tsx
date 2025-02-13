@@ -75,7 +75,7 @@ const StaffListing: React.FC = () => {
             ))
           ) : (
             <p className="col-span-full text-center text-gray-500">
-              No staff members found.
+              Loading staff members
             </p>
           )}
         </div>

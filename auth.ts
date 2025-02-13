@@ -14,6 +14,7 @@ const credentialsConfig = CredentialsProvider({
     password: { label: "Password", type: "password" },
   },
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async authorize(credentials: any) {
     const { name, email, password, isLogin } = credentials;
 

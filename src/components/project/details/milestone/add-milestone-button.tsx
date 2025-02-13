@@ -61,11 +61,12 @@ const AddMilestoneButton = () => {
 
   return (
     <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-      <SheetTrigger asChild>
+      <SheetTrigger                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+ asChild>
         <Button className=" transform rounded-xl bg-indigo-800 px-6 py-3 text-white shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:bg-indigo-800 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
           Add Milestone
         </Button>
-      </SheetTrigger>
+      </SheetTrigger  >
       <SheetContent side="right" className="p-6">
         <SheetHeader>
           <SheetTitle>Add Milestone</SheetTitle>
@@ -74,32 +75,37 @@ const AddMilestoneButton = () => {
           {/* Title */}
           <div>
             <Label htmlFor="title">Title</Label>
-            <Input id="title" name="title" value={formData.title} onChange={handleChange} required />
+            <Input                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+ id="title" name="title" value={formData.title} onChange={handleChange} required />
           </div>
 
           {/* Milestone Start Date */}
           <div>
             <Label htmlFor="milestoneStartDate">Milestone Start Date</Label>
-            <Input type="date" id="milestoneStartDate" name="milestoneStartDate" value={formData.milestoneStartDate} onChange={handleChange} required />
+            <Input                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+ type="date" id="milestoneStartDate" name="milestoneStartDate" value={formData.milestoneStartDate} onChange={handleChange} required />
           </div>
 
           {/* Milestone End Date */}
           <div>
             <Label htmlFor="milestoneEndDate">Milestone End Date</Label>
-            <Input type="date" id="milestoneEndDate" name="milestoneEndDate" value={formData.milestoneEndDate} onChange={handleChange} required />
+            <Input                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+ type="date" id="milestoneEndDate" name="milestoneEndDate" value={formData.milestoneEndDate} onChange={handleChange} required />
           </div>
 
           {/* Description */}
           <div>
             <Label htmlFor="description">Description</Label>
-            <Input id="description" name="description" value={formData.description} onChange={handleChange} required />
+            <Input                            className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+ id="description" name="description" value={formData.description} onChange={handleChange} required />
           </div>
 
           {/* Milestone Status (Dropdown) */}
           <div>
             <Label htmlFor="milestoneStatus">Milestone Status</Label>
             <Select onValueChange={(value) => handleSelectChange("milestoneStatus", value)}>
-              <SelectTrigger>
+              <SelectTrigger                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+ >
                 <SelectValue placeholder="Select milestone status" />
               </SelectTrigger>
               <SelectContent>
@@ -114,26 +120,30 @@ const AddMilestoneButton = () => {
           {/* Goal */}
           <div>
             <Label htmlFor="goal">Goal</Label>
-            <Input id="goal" name="goal" value={formData.goal} onChange={handleChange} required />
+            <Input                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+ id="goal" name="goal" value={formData.goal} onChange={handleChange} required />
           </div>
 
           {/* Start Date */}
           <div>
             <Label htmlFor="startDate">Start Date</Label>
-            <Input type="date" id="startDate" name="startDate" value={formData.startDate} onChange={handleChange} required />
+            <Input                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+ type="date" id="startDate" name="startDate" value={formData.startDate} onChange={handleChange} required />
           </div>
 
           {/* End Date */}
           <div>
             <Label htmlFor="endDate">End Date</Label>
-            <Input type="date" id="endDate" name="endDate" value={formData.endDate} onChange={handleChange} required />
+            <Input                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+ type="date" id="endDate" name="endDate" value={formData.endDate} onChange={handleChange} required />
           </div>
 
           {/* Status (Dropdown) */}
           <div>
             <Label htmlFor="status">Status</Label>
             <Select onValueChange={(value) => handleSelectChange("status", value)}>
-              <SelectTrigger>
+              <SelectTrigger                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+ >
                 <SelectValue placeholder="Select status" />
               </SelectTrigger>
               <SelectContent>
@@ -149,7 +159,8 @@ const AddMilestoneButton = () => {
           {/* Reason */}
           <div>
             <Label htmlFor="reason">Reason</Label>
-            <Input id="reason" name="reason" value={formData.reason} onChange={handleChange} required />
+            <Input                           className="rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+ id="reason" name="reason" value={formData.reason} onChange={handleChange} required />
           </div>
 
           {/* Footer Buttons */}

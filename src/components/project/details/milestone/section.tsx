@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -8,6 +9,7 @@ import AddMilestoneButton from "./add-milestone-button";
 import { useParams } from "next/navigation"; // Use useParams to get projectId
 
 interface Milestone {
+
   id: string;
   milestone: {
     title: string;
@@ -26,6 +28,7 @@ interface Milestone {
 const Milestone: React.FC = () => {
   const [milestones, setMilestones] = useState<Milestone[]>([]);
   const { id } = useParams();
+  const router = useRouter();
 
   useEffect(() => {
     if (!id) return;
@@ -93,14 +96,17 @@ const Milestone: React.FC = () => {
                 </p>
                 <br />
               </div>
-              <Button className="mt-5 w-full rounded-full bg-indigo-800 py-2 text-sm font-medium text-white hover:bg-indigo-800">
-                View Details
-              </Button>
+              <Button
+              className="mt-5 w-full rounded-full bg-indigo-800 py-2 text-sm font-medium text-white hover:bg-indigo-800"
+              onClick={() => router.push(`/milestone/${milestone.id}`)}
+            >
+              View Details
+            </Button>
             </div>
           ))
         ) : (
           <p className="col-span-full text-center text-gray-500">
-            No milestones available
+            Loading milestones 
           </p>
         )}
       </div>

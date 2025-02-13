@@ -148,7 +148,7 @@ const ProjectForm: React.FC = () => {
       const response = await axios.put(`/api/project/${id}`, formData);
       if (response.status === 200) {
         alert("Project updated successfully");
-        router.push(`/projects`);
+        router.push(`/project/${id}`);
       }
     } catch (error: any) {
       console.error("Error updating project:", error);
@@ -537,16 +537,17 @@ const ProjectForm: React.FC = () => {
               onChange={handleTextareaChange}
             />
           </div>
-          <div className=" " >
+          <div className="" >
           <div className="">
-            <h2 className="mb-4 text-lg font-semibold">Addresses</h2>
+            <h2 className="mb-4 text-lg font-semibold  ">Addresses</h2>
+            <div className="flex  ">
             {formData.addresses.map((addr, index) => (
-              <div key={index} className="">
+              <div key={index} className=" ">
                 <label className="block text-sm font-medium text-gray-700">
                   Title
                 </label>
                 <Input
-                  className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="ml-2 p-5 mr-16   w-60 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   type="text"
                   value={addr.title}
                   onChange={(e) =>
@@ -557,16 +558,16 @@ const ProjectForm: React.FC = () => {
                   Address
                 </label>
                 <textarea
-                  className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className=" h-32 w-96 ml-2 p-4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value={addr.address}
                   onChange={(e) =>
                     handleAddressChange(index, "address", e.target.value)
                   }
                 />
               </div>
-            ))}
+            ))}</div>
             {newAddressAdd && (
-              <div className="mb-4 rounded-md border p-4">
+              <div className="mb-4 rounded-md  p-4">
                 <h3 className="text-md font-semibold">New Address</h3>
                 <label className="block text-sm font-medium text-gray-700">
                   Title
@@ -587,7 +588,7 @@ const ProjectForm: React.FC = () => {
                   onChange={handleNewAddressChange}
                   className="w-3/4 rounded-md border-gray-100 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <br />
+                <br/>
                 <Button className="mt-2" onClick={handleAddNewAddress}>
                   Save Address
                 </Button>
